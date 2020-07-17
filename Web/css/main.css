@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Suez+One');
+
+* {
+  margin: 0;
+  padding: 0;
+  
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  text-shadow: 0 1px 0 #eee;
+}
+
+body {
+  background-color: #fafafa;
+  font-family: Trebuchet MS, Helvetica;
+}
+
+/* Шапка сайта */
+
+header {
+  width: 100%;
+  
+  
+  float: top;
+  position: fixed;
+}
+
+header #logo {
+  background-color: #ef9f33;
+  color: #fff;
+  cursor: pointer;
+  
+}
+
+header #logo span {
+  font-size: 1.7em;
+  font-style: oblique;
+  font-weight: bolder;
+  line-height: 45px;
+  
+  font-family: 'Verdana', serif;
+}
+
+header #glogo {
+  height: 100px;
+  
+  float: left;
+  width: 35%;
+  display:flex;
+  justify-content: center; 
+  
+}
+
+img.image { 
+  width: 35px; 
+  border: none; 
+  padding-top: 7px;
+  padding-right: 7px;
+}
+
+#logo {  
+  font-size: 1.1em;
+  display:flex;
+  justify-content: center; 
+  align-items: center;
+  width: 55%;
+}
+
+#about {
+  display:flex;
+  justify-content: center; 
+  align-items: center;
+  height: 100px;
+  width: 65%;
+}
+
+
+#about {
+  text-align: center;
+  font-size: 1.1em;
+  line-height: 40px;
+  
+}
+
+#about > a {
+  color: #9294a4;
+  text-decoration:none;
+}
+  
+#about > a:hover {
+  color: #44535f;
+  
+}
+
+#about > a:not(:last-child) {
+  margin-right: 7%;
+}
+
+/* Стили для фиксированной шапки */
+
+.fixed {
+  z-index: 5000;
+  background-color: #fff;
+  border-bottom: 1px solid silver;
+}
+
+
+
+.fixed #about a {color: #343434}
+.fixed #about a:hover {color: #7c7c7c}
+
+
+.step{
+  height: 100px;
+}
+
+
+
+.box_main2{
+  height:200px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.b_a_i {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.box_about {
+  display: flex;
+  justify-content: center; 
+}
+
+.main_h2 {
+  text-transform: uppercase;
+  font-style: oblique;
+  font-weight: bold;
+  font-size: 2.2em;
+  font-family: 'Verdana', serif;
+}
+
+.main_text {
+  height: 75px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  width: 400px;
+  font-size: 1.2em;
+  font-style: oblique;
+  font-weight: bolder;
+  font-family: 'Verdana', serif;
+  text-transform: uppercase;
+}
+
+.m_2_text {
+  width: 350px;
+  margin-top: 30px;
+  color: #868896;
+  text-align: center;
+  font-family: 'Verdana', serif;
+  line-height: 23px;
+  font-size: 0.8em;
+}
+
+.box_m_2 {
+  
+  width: 400px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+
+.but_div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 175px;
+}
+
+.m_2_button {
+  height: 50px;
+  width: 200px;
+  background-color: #373737;
+  color: #eee;
+  font-style: oblique;
+  font-weight: bolder;
+  text-transform: uppercase;
+  border:0px;
+  font-family: 'Verdana', serif;
+}
+.m_2_button:hover {
+  background-color: #ea5f27;
+}
+
+.main_3 {
+  width: 100%;
+  
+  background-color: #f2f2f2;
+}
+
+.box_m_3 {
+  display: flex;
+  justify-content: center;
+  
+  width: 100%;
+  
+  margin-bottom: 15px;
+}
+
+.m_3_h {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.list_3{
+  list-style: none;
+  line-height: 23px;
+  font-family: 'Verdana', serif;
+  color: #868896;
+}
+.list_3 > li{
+  padding-left: 20px;
+  position: relative;
+  margin: 10px;
+  
+}
+.list_3 > li:before{
+  content: '✔';
+  position: absolute; top: 0; left: 0;
+  color: #ea5f27;}
