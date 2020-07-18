@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center">
 
@@ -9,7 +10,7 @@
         android:id="@+id/text_view_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Логин" />
+        android:text="@string/login" />
 
     <EditText
         android:id="@+id/login_edit_text"
@@ -22,15 +23,22 @@
         android:id="@+id/text_view_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Пароль" />
+        android:text="@string/password" />
 
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+
         android:autofillHints="Пароль"
         android:inputType="textPassword"
         android:labelFor="@id/text_view_password" />
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/enter" />
 
     <ProgressBar
         android:id="@+id/login_progress"
@@ -38,16 +46,13 @@
         android:layout_height="wrap_content"
         android:visibility="gone"/>
 
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="Войти" />
-
     <TextView
         android:id="@+id/register_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Нет аккаунта? Зарегистрируйтесь здесь!" />
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="@string/no_acc_make_register" />
 
 </LinearLayout>

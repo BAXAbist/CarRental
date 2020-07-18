@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(), LoginFragmentViewImpl.OnCreateNewAccou
     override fun onCreateNewAccountClicked() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, registerFragment)
+            .addToBackStack(null)
             .commit()
     }
 

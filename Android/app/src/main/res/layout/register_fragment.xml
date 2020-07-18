@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="center" >
+    android:gravity="center">
 
     <TextView
         android:id="@+id/register_login_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Логин"/>
+        android:text="@string/login"/>
 
     <EditText
         android:id="@+id/register_login_edit_text"
@@ -21,7 +22,7 @@
         android:id="@+id/register_password_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Пароль"/>
+        android:text="@string/password"/>
 
     <EditText
         android:id="@+id/register_password_edit_text"
@@ -33,7 +34,7 @@
         android:id="@+id/surname_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Фамилия"/>
+        android:text="@string/surname"/>
 
     <EditText
         android:id="@+id/surname_edit_text"
@@ -45,7 +46,7 @@
         android:id="@+id/name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Имя" />
+        android:text="@string/name" />
 
     <EditText
         android:id="@+id/name_edit_text"
@@ -57,7 +58,7 @@
         android:id="@+id/father_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Отчество" />
+        android:text="@string/father_name" />
 
     <EditText
         android:id="@+id/father_name_edit_text"
@@ -69,7 +70,7 @@
         android:id="@+id/phone_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Телефон" />
+        android:text="@string/phone" />
 
     <EditText
         android:id="@+id/phone_edit_text"
@@ -81,7 +82,7 @@
         android:id="@+id/address_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Адрес" />
+        android:text="@string/address" />
 
     <EditText
         android:id="@+id/address_edit_text"
@@ -93,12 +94,7 @@
         android:id="@+id/register_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Зарегистрироваться" />
-
-    <Button
-        android:id="@+id/back_button"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="Назад" />
+        android:layout_marginTop="10dp"
+        android:text="@string/register" />
 
 </LinearLayout>

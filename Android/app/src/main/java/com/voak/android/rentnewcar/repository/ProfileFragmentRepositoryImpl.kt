@@ -9,22 +9,21 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginFragmentRepositoryImpl(private val apiService: RentNewCarApiService) : LoginFragmentRepository {
+class ProfileFragmentRepositoryImpl(val apiService: RentNewCarApiService) : ProfileFragmentRepository {
 
-    override fun makeAuth(
+    override fun getClientDataByLogin(
         login: String,
-        password: String,
         resultOk: (UserData) -> Unit,
         resultError: (String) -> Unit
     ) {
         CoroutineScope(IO).launch {
-            val result = apiService.login(login, password)
+            val result = apiService.getUser(login)
 
             withContext(Main) {
                 if (result.isSuccessful) {
+                    Log.i("ProfileRepo", result.body()!!.toString())
                     resultOk.invoke(result.body()!!)
-                    Log.i("TAG", result.body()!!.toString())
-                    } else {
+                } else {
                     resultError.invoke(result.errorBody()!!.string())
                 }
             }

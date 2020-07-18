@@ -8,7 +8,4 @@ class RegisterFragmentPresenterImpl(
     private val repository: RegisterFragmentRepository
 ) : RegisterFragmentPresenter {
 
-    override fun onBackButtonClicked() {
-        view.navigateToLoginFragment()
-    }
 }

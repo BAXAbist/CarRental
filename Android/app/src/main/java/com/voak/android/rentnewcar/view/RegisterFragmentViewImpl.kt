@@ -24,7 +24,6 @@ class RegisterFragmentViewImpl : Fragment(), RegisterFragmentView {
     private lateinit var phoneEditText: EditText
     private lateinit var addressEditText: EditText
     private lateinit var registerButton: Button
-    private lateinit var backButton: Button
 
     @Inject lateinit var presenter: RegisterFragmentPresenter
     private lateinit var callback: NavigationCallback
@@ -55,11 +54,6 @@ class RegisterFragmentViewImpl : Fragment(), RegisterFragmentView {
         phoneEditText = view.findViewById(R.id.phone_edit_text)
         addressEditText = view.findViewById(R.id.address_edit_text)
         registerButton = view.findViewById(R.id.register_button)
-        backButton = view.findViewById(R.id.back_button)
-
-        backButton.setOnClickListener {
-            presenter.onBackButtonClicked()
-        }
 
         return view
     }
