@@ -1,0 +1,11 @@
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.csprojAssemblyReference.cache
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.Form1.resources
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.Form_Add.resources
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.Properties.Resources.resources
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.csproj.GenerateResource.cache
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.csproj.CoreCompileInputs.cache
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\bin\Debug\Desktop.exe.config
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\bin\Debug\Desktop.exe
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\bin\Debug\Desktop.pdb
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.exe
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.pdb
