@@ -33,7 +33,7 @@ namespace Desktop
         private void button2_Click(object sender, EventArgs e)
         {
             string[] res = { textBox2.Text, textBox3.Text, textBox4.Text };
-            parent.AddRow(res, textBox1.Text);
+            parent.AddNewCar(res, textBox1.Text);
             this.Close();
         }
     }

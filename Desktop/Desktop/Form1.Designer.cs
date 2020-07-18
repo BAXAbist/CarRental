@@ -34,17 +34,13 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Photo = new System.Windows.Forms.DataGridViewImageColumn();
-            this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,12 +49,17 @@
             this.Brand_Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date_issue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Photo = new System.Windows.Forms.DataGridViewImageColumn();
+            this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,6 +77,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(630, 497);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Button_AddCar
             // 
@@ -95,6 +97,7 @@
             this.Button_DelCar.TabIndex = 2;
             this.Button_DelCar.Text = "Удалить";
             this.Button_DelCar.UseVisualStyleBackColor = true;
+            this.Button_DelCar.Click += new System.EventHandler(this.Button_DelCar_Click);
             // 
             // tabControl1
             // 
@@ -117,7 +120,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(642, 538);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Авто";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -128,43 +131,8 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(642, 538);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Клиенты";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // Photo
-            // 
-            this.Photo.HeaderText = "Фото";
-            this.Photo.Name = "Photo";
-            this.Photo.ReadOnly = true;
-            // 
-            // brand
-            // 
-            this.brand.HeaderText = "Марка";
-            this.brand.Name = "brand";
-            this.brand.ReadOnly = true;
-            // 
-            // type
-            // 
-            this.type.HeaderText = "Категория";
-            this.type.Name = "type";
-            this.type.ReadOnly = true;
-            // 
-            // cost
-            // 
-            this.cost.HeaderText = "Стоим-ть";
-            this.cost.Name = "cost";
-            this.cost.ReadOnly = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.dataGridView3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(642, 538);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // dataGridView2
             // 
@@ -178,7 +146,7 @@
             this.Address});
             this.dataGridView2.Location = new System.Drawing.Point(7, 7);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(629, 525);
+            this.dataGridView2.Size = new System.Drawing.Size(630, 497);
             this.dataGridView2.TabIndex = 0;
             // 
             // FirstName
@@ -211,6 +179,17 @@
             this.Address.Name = "Address";
             this.Address.ReadOnly = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataGridView3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(642, 538);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Текущие заказы";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // dataGridView3
             // 
             this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -225,7 +204,7 @@
             this.Date_return});
             this.dataGridView3.Location = new System.Drawing.Point(6, 6);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(630, 464);
+            this.dataGridView3.Size = new System.Drawing.Size(630, 497);
             this.dataGridView3.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -272,6 +251,31 @@
             this.Date_return.Name = "Date_return";
             this.Date_return.ReadOnly = true;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // Photo
+            // 
+            this.Photo.HeaderText = "Фото";
+            this.Photo.Name = "Photo";
+            this.Photo.ReadOnly = true;
+            // 
+            // brand
+            // 
+            this.brand.HeaderText = "Марка";
+            this.brand.Name = "brand";
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Категория";
+            this.type.Name = "type";
+            // 
+            // cost
+            // 
+            this.cost.HeaderText = "Стоим-ть";
+            this.cost.Name = "cost";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,12 +284,13 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoadToServer);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
@@ -294,10 +299,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewImageColumn Photo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brand;
-        private System.Windows.Forms.DataGridViewTextBoxColumn type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cost;
         private System.Windows.Forms.Button Button_AddCar;
         private System.Windows.Forms.Button Button_DelCar;
         private System.Windows.Forms.TabControl tabControl1;
@@ -318,6 +319,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Brand_Order;
         private System.Windows.Forms.DataGridViewTextBoxColumn date_issue;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date_return;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.DataGridViewImageColumn Photo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn brand;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cost;
     }
 }
 
