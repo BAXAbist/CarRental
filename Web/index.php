@@ -33,7 +33,7 @@
   <div class="step"></div>
   <div class="wrapper">
     <div class="fotorama" data-width="100%"
-    data-ratio="1600/690"
+    
     data-loop="true"
     data-autoplay="4000"
     data-nav="false"
@@ -49,25 +49,25 @@
     <div class="box_main2"><h1 class="main_h2">Ищете подходящий сервис?</h1></div>
     <div class="box_about">
       <div class="b_a_i">
-        <img src="image/10.jpg" style="height: 150px; width: 400px;">
+        <img src="image/10.jpg" >
         <div class="main_text">Аренда для бизнеса</div>
         <div class = "box_m_2">
         <p class="m_2_text"> Вы можете полностью положиться на нас во время важной деловой поездки. Мы гарантируем успешное и безопасное вождение автомобиля.</p>
         </div>
       </div>
       <div class="b_a_i">
-        <img src="image/11.jpg" style="height: 150px; width: 400px;">
+        <img src="image/11.jpg" >
         <div class="main_text">Аренда люкс уровня</div>
         <div class = "box_m_2">
         <p class="m_2_text"> Наша компания предоставляет впечатляющий выбор роскошных автомобилей для первоклассных деловых и частных поездок на короткие расстояния.</p>
-      </div>
+        </div>
       </div>
       <div class="b_a_i">
-        <img src="image/12.jpg" style="height: 150px; width: 400px;">
+        <img src="image/12.jpg" >
         <div class="main_text">Аренда для путешествий</div>
         <div class = "box_m_2">
         <p class="m_2_text"> Путешествие с комфортом - это цель и главный приоритет нашей компании. Мы заботимся о вашем опыте, куда бы вы ни пошли.</p>
-      </div>
+        </div>
       </div>
     </div>   
     <div class="but_div"><button class="m_2_button">Найти машину</button></div> 

@@ -66,6 +66,7 @@ img.image {
   justify-content: center; 
   align-items: center;
   width: 55%;
+  margin-left: 20%;
 }
 
 #about {
@@ -118,21 +119,36 @@ img.image {
 
 
 
+
+
 .box_main2{
   height:200px;
   display: flex;
   justify-content: center; 
   align-items: center;
+  width: 100%;
 }
 
 .b_a_i {
   margin-left: 25px;
   margin-right: 25px;
+  width: 30%;
+  
+  
+}
+
+.b_a_i img {
+  width: 100%;
+  max-width: 600px;
+  
 }
 
 .box_about {
+  width: 80%;
   display: flex;
   justify-content: center; 
+  margin: 0 auto;
+  
 }
 
 .main_h2 {
@@ -149,7 +165,7 @@ img.image {
   display: flex;
   justify-content: center; 
   align-items: center;
-  width: 400px;
+  
   font-size: 1.2em;
   font-style: oblique;
   font-weight: bolder;
@@ -158,18 +174,19 @@ img.image {
 }
 
 .m_2_text {
-  width: 350px;
+  
   margin-top: 30px;
   color: #868896;
   text-align: center;
   font-family: 'Verdana', serif;
   line-height: 23px;
   font-size: 0.8em;
+  width: 90%;
 }
 
 .box_m_2 {
   
-  width: 400px;
+  
   display: flex;
   justify-content: center; 
   align-items: center;
