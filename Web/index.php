@@ -91,15 +91,15 @@
 
 
   <div class="main_4">
-
-
+        
     <script src="/js/generate.js"></script>
 
-
+    <div class ="head_m4"><h1 class="main_h2">автопарк</h1></div>
     <form id = "form">
-        <input type="submit" name="action1" value="0">
-        <input type="submit" name="action2" value="1">
-        <input type="submit" name="action3" value="2">
+        <input type="image" name="action1" value="4" src="image/12.jpg" >
+        <input type="image" name="action1" value="0" src="image/12.jpg" >
+        <input type="image" name="action2" value="1" src="image/12.jpg" >
+        <input type="image" name="action3" value="2" src="image/12.jpg" >
     </form>
 
     <div id = "result">
@@ -109,8 +109,8 @@
         $cars = $db->getAllCars();
         foreach($cars as $item) {
         print $item['brand'];}
-    ?>
-    </div>
+     ?>
+     </div>
   </div>
 
 
