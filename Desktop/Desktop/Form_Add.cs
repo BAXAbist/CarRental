@@ -27,6 +27,8 @@ namespace Desktop
             {
                 textBox1.Text = OpenFile.FileName;
                 string FileName = textBox1.Text;
+                Bitmap i = new Bitmap(Image.FromFile(FileName), 200, 100);
+                pictureBox1.Image = i;
             }
         }
 
