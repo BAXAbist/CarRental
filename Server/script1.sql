@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Car_rent` (
   `cost` INT NOT NULL,
   `type` TEXT NULL,
   `icon` TEXT NOT NULL,
+  `status` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id_car`),
   UNIQUE INDEX `id_car_UNIQUE` (`id_car` ASC))
 ENGINE = InnoDB;
@@ -58,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`History` (
   `id_car` INT NOT NULL,
   `date_issue` DATETIME NOT NULL,
   `date_return` DATETIME NOT NULL,
+  `state` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id_history`),
   UNIQUE INDEX `id_history_UNIQUE` (`id_history` ASC),
   INDEX `id_client_idx` (`id_client` ASC),
@@ -70,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`History` (
   CONSTRAINT `id_car`
     FOREIGN KEY (`id_car`)
     REFERENCES `mydb`.`Car_rent` (`id_car`)
-    ON DELETE CASCADE
+    ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
