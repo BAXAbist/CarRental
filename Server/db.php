@@ -13,7 +13,7 @@
         //Authorization client and Get client's info by login and password
         //@$login - client's login 
         //@$password - client's password
-        //return client's data(array). The array contains the 'result' element. If the login is in DB and the password matches, then 'result' will be 'ok'. 
+        //@return client's data(array). The array contains the 'result' element. If the login is in DB and the password matches, then 'result' will be 'ok'. 
         //If the login is not in DB, the 'result' will be 'wrong login'. 
         //And if the login is there, but the password does not match, then 'result' will be 'wrong password'.
         public function authClient ($login,$password){
@@ -54,7 +54,7 @@
 
         //Get client's info by login and password
         //@$login - client's login 
-        //return client's data(array). The array contains the 'result' element. If the login is in DB, then 'result' will be 'ok'. 
+        //@return client's data(array). The array contains the 'result' element. If the login is in DB, then 'result' will be 'ok'. 
         //If the login is not in DB, the 'result' will be 'wrong login'. 
         public function getClientByLogin ($login){
             $conn = $this->createConnection ();
@@ -89,7 +89,7 @@
 
         //Get client's info by id
         //@$id - client's id       
-        //return client's data(array). The array contains the 'result' element. If the id is in DB, then 'result' will be 'ok'. 
+        //@return client's data(array). The array contains the 'result' element. If the id is in DB, then 'result' will be 'ok'. 
         //If the id is not in DB, the 'result' will be 'wrong id'. 
         public function getClientById ($id_client){
             $conn = $this->createConnection ();
@@ -124,7 +124,7 @@
 
         //Delete Client's info from DB
         //@$login - client's login       
-        //Return true if the request was successful or false if an error occurred
+        //@return true if the request was successful or false if an error occurred
         public function DeleteClientByLogin ($login){
             $conn = $this->createConnection ();
             $flag = True;
@@ -142,7 +142,7 @@
         }
 
         //Get info about all clients
-        //return all clients data(array). The key of the element is the client's id and the value is client's data(array).
+        //@return all clients data(array). The key of the element is the client's id and the value is client's data(array).
         //the '0' element would be 'ok' if the request was successful.
         //the '0' element will be 'Clients list is empty' if table 'Clients' is empty.
         public function getAllClients (){
@@ -154,9 +154,8 @@
                     $clients = array('0' => "Clients list is empty");
                 }
                 else{
-                    foreach ($log as $row) {
-                        $cl_key = $row['id_car'];
-                        $clients[ $cl_key] =  array('id_client' => $row['id_client'],
+                    foreach ($log as $row) {                        
+                        $clients[] =  array('id_client' => $row['id_client'],
                                                     'login' => $row['login'],
                                                     'password' => $row['password'],
                                                     'first_name' => $row['first_name'],
@@ -170,7 +169,7 @@
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $client = array('0' => 'error');
+                $clients = array('0' => 'error');
             }
             $conn = null;
             return $clients;
@@ -178,7 +177,7 @@
 
         //Get Car's info by id
         //@$id - Car's id       
-        //return Car's data(array). The array contains the 'result' element. If the id is in DB, then 'result' will be 'ok'. 
+        //@return Car's data(array). The array contains the 'result' element. If the id is in DB, then 'result' will be 'ok'. 
         //If the id is not in DB, the 'result' will be 'unknown car'.
         public function getCarByid ($id_car){
             $conn = $this->createConnection ();
@@ -203,14 +202,14 @@
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $client = array('result' => 'error');
+                $car = array('result' => 'error');
             }
             $conn = null;
             return $car;
         }
 
         //Get info about all cars.
-        //return all cars data(array). The key of the element is the cars's id and the value is cars's data(array).
+        //@return all cars data(array). The key of the element is the cars's id and the value is cars's data(array).
         //the '0' element will be 'Cars list is empty' if table 'Car_rent' is empty.
         public function getAllCars (){
             $conn = $this->createConnection ();
@@ -218,12 +217,11 @@
                 $sql = "SELECT * FROM Car_rent";
                 $log = $conn->query($sql);
                 if ($log->rowCount() == 0){
-                    $cars = array('0' => "Cars list is empty");
+                    $cars[] = array('0' => "Cars list is empty");
                 }
                 else{
-                    foreach ($log as $row) {
-                        $c_key = $row['id_car'];
-                        $cars[$c_key] =  array('id_car' => $row['id_car'],
+                    foreach ($log as $row) {                        
+                        $cars[] =  array('id_car' => $row['id_car'],
                                                 'brand' => $row['brand'],
                                                 'cost' => $row['cost'],
                                                 'type' => $row['type'],
@@ -235,7 +233,7 @@
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $client = array('0' => 'error');
+                $cars[] = array('0' => 'error');
             }
             $conn = null;
             return $cars;
@@ -243,7 +241,7 @@
 
         //Get info about all cars with requested status
         //@$status - Car's status      
-        //return Car's data(array). The key of the element is the cars's id and the value is cars's data(array).
+        //@return Car's data(array). The key of the element is the cars's id and the value is cars's data(array).
         //the '0' element will be 'There are no cars with this status' if table 'Car_rent' doesnt contain cars with requested status.
         public function getCarsByStatus ($status){
             $conn = $this->createConnection ();
@@ -254,9 +252,8 @@
                     $cars = array('0' => "There are no cars with this status");
                 }
                 else{
-                    foreach ($log as $row) {
-                        $c_key = $row['id_car'];
-                        $cars[$c_key] =  array('id_car' => $row['id_car'],
+                    foreach ($log as $row) {                        
+                        $cars[] =  array('id_car' => $row['id_car'],
                                                 'brand' => $row['brand'],
                                                 'cost' => $row['cost'],
                                                 'type' => $row['type'],
@@ -268,7 +265,7 @@
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $client = array('0' => 'error');
+                $cars[] = array('0' => 'error');
             }
             $conn = null;
             return $cars;
@@ -276,7 +273,7 @@
 
         //Delete Car's info from DB
         //@$id - Car's id       
-        //Return true if the request was successful or false if an error occurred
+        //@return true if the request was successful or false if an error occurred
         public function DeleteCarByID ($id_car){
             $conn = $this->createConnection ();
             $flag = True;
@@ -295,7 +292,7 @@
 
         //Get history record by id
         //@$id_history - id of the requested history      
-        //return history's data(array). The array contains the 'result' element. If the id is in DB, then 'result' will be 'ok'. 
+        //@return history's data(array). The array contains the 'result' element. If the id is in DB, then 'result' will be 'ok'. 
         //If the id is not in DB, the 'result' will be 'unknown history'.
         public function getHistoryById ($id_history){
             $conn = $this->createConnection ();
@@ -320,7 +317,7 @@
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $client = array('result' => 'error');
+                $history = array('result' => 'error');
             }
             $conn = null;
             return $history;
@@ -328,7 +325,7 @@
         
         //Get all records of the requested client
         //@$id_client - id of the requested client     
-        //return history data(array). The key of the element is the history's id and the value is history data(array). 
+        //@return history data(array). The key of the element is the history's id and the value is history data(array). 
         //If the id is not in DB, the '0' element will be 'Client's history is empty'.
         public function getClientHistory  ($id_client){
             $conn = $this->createConnection ();
@@ -336,13 +333,12 @@
                 $sql = "SELECT * FROM History WHERE id_client = '$id_client'";
                 $log = $conn->query($sql);
                 if ($log->rowCount() == 0){
-                    $cl_history = array('0' => "Client's history is empty");
+                    $cl_history[] = array('0' => "Client's history is empty");
                 }
                 else{
                     $cl_history = array();
-                    foreach ($log as $row) {
-                        $cl_key = $row['id_history'];
-                        $cl_history[$cl_key] = array('id_history' => $row['id_history'],
+                    foreach ($log as $row) {                        
+                        $cl_history[] = array('id_history' => $row['id_history'],
                                             'id_client' => $row['id_client'],
                                             'id_car' => $row['id_car'],
                                             'date_issue' => $row['date_issue'],
@@ -354,7 +350,7 @@
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $client = array('0' => 'error');
+                $cl_history[] = array('0' => 'error');
             }
             $conn = null;
             return $cl_history;
@@ -368,7 +364,7 @@
         //@$middle_name - Client's middle_name
         //@$address - Client's address
         //@$phone - Client's phone       
-        //Return "ok" if the request was successful or "login is already taken" if this login is in the DB or "error",if an error occurred
+        //@return "ok" if the request was successful or "login is already taken" if this login is in the DB or "error",if an error occurred
         public function addClient ($login,$password,$first_name,$second_name,$middle_name,$address,$phone){
             $conn = $this->createConnection ();
             $result = "";
@@ -400,19 +396,19 @@
         //@$tipe - Car's tipe
         //@$icon - link on the car's icon
         //@$status - Car's status            
-        //Return true if the request was successful or false if an error occurred
-        public function addCar ($brand,$cost,$tipe,$icon,$status){
-            $conn = $this->createConnection ();
-            $flag = True;
+        //@return true if the request was successful or false if an error occurred
+        public function addCar ($brand,$cost,$type,$icon,$status){
+            $conn = $this->createConnection ();            
+            $flag = 'ok';
             try{
                 $sql = "INSERT INTO Car_rent (brand,cost,tipe,icon,status)
-                        VALUES ('$brand','$cost','$tipe','$icon','$status')";
+                        VALUES ('$brand','$cost','$type','$icon','$status')";
                 $conn->exec($sql);
             }
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $flag = False;
+                $flag = 'error';
             }
             $conn = null;
             return $flag;
@@ -424,10 +420,10 @@
         //@$date_issue - rental start date and time (format: 'yyyy-mm-dd hh:mm:ss')
         //@$date_return - date and time of the car return (format: 'yyyy-mm-dd hh:mm:ss')
         //@$state - history state(active, close, cancel)        
-        //Return true if the request was successful or false if an error occurred
+        //@return true if the request was successful or false if an error occurred
         public function addHistory ($id_client,$id_car,$date_issue,$date_return,$state){
             $conn = $this->createConnection ();
-            $flag = True;
+            $flag = 'ok';
             try{
                 $sql = "INSERT INTO History (id_client,id_car,date_issue,date_return,state)
                         VALUES ('$id_client','$id_car','$date_issue','$date_return','$state')";
@@ -437,7 +433,7 @@
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $flag = False;
+                $flag = 'error';
             }
             $conn = null;
             return $flag;
@@ -452,28 +448,51 @@
         //@$middle_name - new(or old) Client's middle_name
         //@$address - new(or old) Client's address
         //@$phone - new(or old) Client's phone       
-        //Return "ok" if the request was successful or "unknown client" if this id is not in the DB or "error",if an error occurred
+        //@return "ok" if the request was successful or "unknown client" if this id is not in the DB or "error",if an error occurred
         public function updateClientInfoById ($id_client,$login,$password,$first_name,$second_name,$middle_name,$address,$phone){
             $conn = $this->createConnection ();
             $result = "";
             try{
-                $sel = "SELECT * FROM Clients WHERE id_client = '$id_client'";                      
-                $log = $conn->query($sel);
-                if ($log->rowCount() == 0){
-                    $result = "unknown client";
+                $sel_login = "SELECT * FROM Clients WHERE login = '$login'";
+                $login_check = $conn->query($sel_login);
+                if ($login_check->rowCount() != 0){
+                    $result = "login is already taken";
                 }
                 else{
-                    $upd = "UPDATE Clients set login = '$login',
-                                                password = '$password', 
-                                                first_name = '$first_name', 
-                                                second_name = '$second_name', 
-                                                middle_name = '$middle_name', 
-                                                address = '$address', 
-                                                phone = '$phone'
-                                            where id_client = '$id_client'";      
-                    $conn->exec($upd);
-                    $result = "ok";                    
-                }                
+                    $sel_id = "SELECT * FROM Clients WHERE id_client = '$id_client'";                      
+                    $log = $conn->query($sel_id);
+                    if ($log->rowCount() == 0){
+                        $result = "unknown client";
+                    }
+                    else{
+                        $update = "set ";
+                        if($login != null){
+                            $update .= "login = '$login',";
+                        }
+                        if($password != null){
+                            $update .= " password = '$password',";
+                        }
+                        if($first_name != null){
+                            $update .= " first_name = '$first_name',";
+                        }
+                        if($second_name != null){
+                            $update .= " second_name = '$second_name',";
+                        }
+                        if($middle_name != null){
+                            $update .= " middle_name = '$middle_name',";
+                        }
+                        if($address != null){
+                            $update .= " address = '$address',";
+                        }
+                        if($phone != null){
+                            $update .= " phone = '$phone',";
+                        }
+                        $update = rtrim($update,",");
+                        $upd = "UPDATE Clients ". $update. " where id_client = '$id_client'";
+                        $conn->exec($upd);
+                        $result = "ok";                    
+                    }  
+                }              
             }
             catch(PDOException $e)
             {
@@ -491,7 +510,7 @@
         //@$tipe - new(or old) Car's tipe
         //@$icon - new(or old) link on the car's icon
         //@$status - new(or old) Car's status            
-        //Return true if the request was successful or false if an error occurred
+        //@return true if the request was successful or false if an error occurred
         public function updateCarInfoById ($id_car,$brand,$cost,$type,$icon,$status){
             $conn = $this->createConnection ();
             $result = "";
@@ -502,15 +521,26 @@
                     $result = "unknown car";
                 }
                 else{
-                    $upd = "UPDATE Car_rent set brand = '$brand',
-                                                cost = '$cost', 
-                                                type = '$type', 
-                                                icon = '$icon', 
-                                                status = '$status',
-                                            where id_car = '$id_car'";      
+                    $update = "set ";
+                    if($brand != null){
+                        $update .= "brand = '$brand',";
+                    }
+                    if($cost != null){
+                        $update .= " cost = '$cost',";
+                    }
+                    if($type != null){
+                        $update .= " type = '$type',";
+                    }
+                    if($icon != null){
+                        $update .= " icon = '$icon',";
+                    }
+                    if($status != null){
+                        $update .= " status = '$status',";
+                    }            
+                    $update = rtrim($update,",");
+                    $upd = "UPDATE Car_rent ". $update. " where id_car = '$id_car'";      
                     $conn->exec($upd);
                     $result = "ok";
-                    
                 }                
             }
             catch(PDOException $e)
@@ -529,7 +559,7 @@
         //@$date_issue - new(or old) rental start date and time (format: 'yyyy-mm-dd hh:mm:ss')
         //@$date_return - new(or old) date and time of the car return (format: 'yyyy-mm-dd hh:mm:ss')
         //@$state - new(or old) history state(active, close, cancel)           
-        //Return true if the request was successful or false if an error occurred
+        //@return true if the request was successful or false if an error occurred
         public function updateHistoryById ($id_history,$id_client,$id_car,$date_issue,$date_return,$state){
             $conn = $this->createConnection ();
             $result = "";
@@ -540,15 +570,26 @@
                     $result = "unknown history";
                 }
                 else{
-                    $upd = "UPDATE History set id_client = '$id_client',
-                                                id_car = '$id_car', 
-                                                date_issue = '$date_issue', 
-                                                date_return = '$date_return', 
-                                                state = '$state',
-                                            where id_history = '$id_history'";      
+                    $update = "set ";
+                    if($id_client != null){
+                        $update .= "id_client = '$id_client',";
+                    }
+                    if($id_car != null){
+                        $update .= " id_car = '$id_car',";
+                    }
+                    if($date_issue != null){
+                        $update .= " date_issue = '$date_issue',";
+                    }
+                    if($date_return != null){
+                        $update .= " date_return = '$date_return',";
+                    }
+                    if($state != null){
+                        $update .= " state = '$state',";
+                    }            
+                    $update = rtrim($update,",");
+                    $upd = "UPDATE History ". $update. " where id_history = '$id_history'";      
                     $conn->exec($upd);
                     $result = "ok";
-                    
                 }                
             }
             catch(PDOException $e)
@@ -563,4 +604,6 @@
 
     }
 
+    // $db = new DB_requests;
+    // $db->addClient("test2_login","test2_pass","test2_name","test2_sec","test2_last","test2_address","_phone2");
 ?>
