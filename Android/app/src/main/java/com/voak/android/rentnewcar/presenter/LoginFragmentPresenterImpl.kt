@@ -12,7 +12,7 @@ class LoginFragmentPresenterImpl(
 ) : LoginFragmentPresenter
 {
 
-    override fun onCreate() {
+    override fun onCreateView() {
         val login = QueryPreferences.getClientLogin()
         val password = QueryPreferences.getClientPassword()
 
@@ -31,7 +31,7 @@ class LoginFragmentPresenterImpl(
                 {
                     view.hideProgress()
                     Log.i("TAG", it.toString())
-                    QueryPreferences.setClientAuthData(login, password)
+                    QueryPreferences.setClientAuthData(it.login, it.password, it.id)
                     view.navigateToBottomNavigationActivity()
                 },
                 {

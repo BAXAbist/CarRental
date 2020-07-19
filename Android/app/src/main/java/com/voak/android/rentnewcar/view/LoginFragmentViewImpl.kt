@@ -58,6 +58,8 @@ class LoginFragmentViewImpl : Fragment(), LoginFragmentView {
             presenter.onRegisterAccountClicked()
         }
 
+        presenter.onCreateView()
+
         return view
     }
 

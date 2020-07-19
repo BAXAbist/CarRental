@@ -11,6 +11,9 @@ interface ProfileFragmentView {
     fun hideProgress()
     fun showUserData()
     fun hideUserData()
+    fun showButtons()
+    fun hideButtons()
     fun showErrorMessage()
     fun hideErrorMessage()
+    fun navigateToEditInfoFragment()
 }

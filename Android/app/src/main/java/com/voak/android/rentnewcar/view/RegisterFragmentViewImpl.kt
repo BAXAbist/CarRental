@@ -1,11 +1,13 @@
 package com.voak.android.rentnewcar.view
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.voak.android.rentnewcar.MyApplication
 import com.voak.android.rentnewcar.R
@@ -55,20 +57,37 @@ class RegisterFragmentViewImpl : Fragment(), RegisterFragmentView {
         addressEditText = view.findViewById(R.id.address_edit_text)
         registerButton = view.findViewById(R.id.register_button)
 
+        registerButton.setOnClickListener {
+            presenter.onRegisterButtonClicked(
+                loginEditText.text.toString(),
+                passwordEditText.text.toString(),
+                nameEditText.text.toString(),
+                surnameEditText.text.toString(),
+                fatherNameEditText.text.toString(),
+                phoneEditText.text.toString(),
+                addressEditText.text.toString()
+            )
+        }
+
         return view
     }
 
-    override fun navigateToLoginFragment() {
-        callback.onBackButtonClicked()
+    override fun showToastMessage(message: String) {
+        val toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.BOTTOM, 0, 20)
+        toast.show()
     }
 
-    public fun setNavigationCallback(callback: NavigationCallback) {
+    override fun navigateToLoginFragment() {
+        callback.navigateToLoginFragment()
+    }
+
+    fun setNavigationCallback(callback: NavigationCallback) {
         this.callback = callback
     }
 
     interface NavigationCallback {
-        fun onBackButtonClicked()
-        fun onRegisterButtonClicked()
+        fun navigateToLoginFragment()
     }
 
 }

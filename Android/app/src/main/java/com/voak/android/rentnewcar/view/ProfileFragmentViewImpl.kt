@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -31,8 +32,11 @@ class ProfileFragmentViewImpl : Fragment(), ProfileFragmentView {
     private lateinit var errorTextView: TextView
     private lateinit var sadIcon: ImageView
     private lateinit var errorDescription: TextView
+    private lateinit var editButton: Button
+    private lateinit var changePasswordButton: Button
 
     @Inject lateinit var presenter: ProfileFragmentPresenter
+    private lateinit var navigationCallback: NavigationCallback
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +64,16 @@ class ProfileFragmentViewImpl : Fragment(), ProfileFragmentView {
         errorTextView = view.findViewById(R.id.profile_error_text_view)
         sadIcon = view.findViewById(R.id.profile_sad_icon)
         errorDescription = view.findViewById(R.id.profile_error_description)
+        editButton = view.findViewById(R.id.edit_button)
+        changePasswordButton = view.findViewById(R.id.change_password_button)
+
+        editButton.setOnClickListener {
+            presenter.onEditInfoButtonClicked()
+        }
+
+        changePasswordButton.setOnClickListener {
+            presenter.onChangePasswordButtonClicked()
+        }
 
         presenter.onCreateView()
 
@@ -108,6 +122,16 @@ class ProfileFragmentViewImpl : Fragment(), ProfileFragmentView {
         addressTextView.visibility = View.GONE
     }
 
+    override fun showButtons() {
+        editButton.visibility = View.VISIBLE
+        changePasswordButton.visibility = View.VISIBLE
+    }
+
+    override fun hideButtons() {
+        editButton.visibility = View.GONE
+        changePasswordButton.visibility = View.GONE
+    }
+
     override fun showErrorMessage() {
         sadIcon.visibility = View.VISIBLE
         errorTextView.visibility = View.VISIBLE
@@ -118,5 +142,31 @@ class ProfileFragmentViewImpl : Fragment(), ProfileFragmentView {
         sadIcon.visibility = View.GONE
         errorTextView.visibility = View.GONE
         errorDescription.visibility = View.GONE
+    }
+
+    override fun navigateToEditInfoFragment() {
+        navigationCallback.navigateToEditInfoFragment(
+            loginTextView.text.toString().split(" ")[1],
+            nameTextView.text.toString().split(" ")[1],
+            nameTextView.text.toString().split(" ")[2],
+            nameTextView.text.toString().split(" ")[3],
+            addressTextView.text.toString().split("Адрес: ")[1],
+            phoneTextView.text.toString().split(" ")[1]
+        )
+    }
+
+    fun setNavigationCallback(callback: NavigationCallback) {
+        navigationCallback = callback
+    }
+
+    interface NavigationCallback {
+        fun navigateToEditInfoFragment(
+            login: String,
+            firstName: String,
+            secondName: String,
+            middleName: String,
+            address: String,
+            phone: String
+        )
     }
 }

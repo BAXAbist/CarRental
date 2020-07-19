@@ -15,4 +15,29 @@ interface RentNewCarApiService {
     @GET("getUser.php")
     suspend fun getUser(@Query("login") login: String): Response<UserData>
 
+    @FormUrlEncoded
+    @POST("Cl_registration.php")
+    suspend fun registerClient(
+        @Field("login") login: String,
+        @Field("password") password: String,
+        @Field("first_name") firstName: String,
+        @Field("second_name") secondName: String,
+        @Field("middle_name") middleName: String,
+        @Field("address") address: String,
+        @Field("phone") phone: String
+    ) : Response<String>
+
+    @FormUrlEncoded
+    @POST("Cl_update.php")
+    suspend fun updateClientInfo(
+        @Field("id_client") clientId: Int,
+        @Field("login") login: String?,
+        @Field("password") password: String?,
+        @Field("first_name") firstName: String?,
+        @Field("second_name") secondName: String?,
+        @Field("middle_name") middleName: String?,
+        @Field("address") address: String?,
+        @Field("phone") phone: String?
+    ): Response<String>
+
 }

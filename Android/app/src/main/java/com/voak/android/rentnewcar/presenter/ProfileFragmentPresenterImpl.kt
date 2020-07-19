@@ -13,6 +13,7 @@ class ProfileFragmentPresenterImpl(
         val login = QueryPreferences.getClientLogin()
         if (!login.isNullOrEmpty()) {
             view.hideUserData()
+            view.hideButtons()
             view.showProgress()
             repository.getClientDataByLogin(
                 login,
@@ -23,6 +24,7 @@ class ProfileFragmentPresenterImpl(
                     view.setAddress(it.address)
                     view.hideProgress()
                     view.showUserData()
+                    view.showButtons()
                 },
                 {
                     view.setErrorDescription(it)
@@ -33,5 +35,11 @@ class ProfileFragmentPresenterImpl(
         }
     }
 
+    override fun onEditInfoButtonClicked() {
+        view.navigateToEditInfoFragment()
+    }
 
+    override fun onChangePasswordButtonClicked() {
+
+    }
 }

@@ -10,7 +10,7 @@ import com.voak.android.rentnewcar.view.RegisterFragmentViewImpl
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), LoginFragmentViewImpl.OnCreateNewAccountListener,
-    RegisterFragmentViewImpl.NavigationCallback{
+    RegisterFragmentViewImpl.NavigationCallback {
 
     @Inject lateinit var loginFragment: LoginFragmentViewImpl
     @Inject lateinit var registerFragment: RegisterFragmentViewImpl
@@ -45,13 +45,7 @@ class MainActivity : AppCompatActivity(), LoginFragmentViewImpl.OnCreateNewAccou
             .commit()
     }
 
-    override fun onBackButtonClicked() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, loginFragment)
-            .commit()
-    }
-
-    override fun onRegisterButtonClicked() {
-
+    override fun navigateToLoginFragment() {
+        onBackPressed()
     }
 }

@@ -23,4 +23,7 @@
     <string name="register">Зарегистрироваться</string>
     <string name="enter">Войти</string>
     <string name="no_acc_make_register">Нет аккаунта? Зарегистрируйтесь здесь!</string>
+    <string name="edit">Редактировать</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="change">Изменить</string>
 </resources>
