@@ -17,10 +17,10 @@
         $data = $db->addClient($login, $password, $first_name, $second_name, $middle_name, $address, $phone);
         if ($data == 'ok') {
             sendResponse(200, $data);
-        } elseif ($data == 'login is already taken'){
-            sendResponse(400, $data);
+        } elseif ($data == 'login is already taken') {
+            sendResponse(400, 'login is already taken');
         } else {
-            sendResponse(400, $data);
+            sendResponse(400, "error");
         }
     }
 
