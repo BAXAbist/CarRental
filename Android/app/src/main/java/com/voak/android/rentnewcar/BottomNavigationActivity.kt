@@ -2,16 +2,15 @@ package com.voak.android.rentnewcar
 
 import androidx.fragment.app.Fragment
 import android.os.Bundle
-import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import com.voak.android.rentnewcar.view.CarsFragmentViewImpl
-import com.voak.android.rentnewcar.view.EditInfoFragmentImpl
-import com.voak.android.rentnewcar.view.HistoryFragmentViewImpl
-import com.voak.android.rentnewcar.view.ProfileFragmentViewImpl
+import com.voak.android.rentnewcar.view.*
 
 
-class BottomNavigationActivity : AppCompatActivity(), ProfileFragmentViewImpl.NavigationCallback {
+class BottomNavigationActivity : AppCompatActivity(), ProfileFragmentViewImpl.NavigationCallback,
+    EditInfoFragmentViewImpl.NavigationCallback, EditPasswordFragmentViewIml.NavigationCallback {
+
+    private lateinit var curFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,17 +20,20 @@ class BottomNavigationActivity : AppCompatActivity(), ProfileFragmentViewImpl.Na
         navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_cars -> {
-                    openFragment(CarsFragmentViewImpl.newInstance())
+                    curFragment = CarsFragmentViewImpl.newInstance()
+                    openFragment(curFragment)
                     true
                 }
                 R.id.navigation_history -> {
-                    openFragment(HistoryFragmentViewImpl.newInstance())
+                    curFragment = HistoryFragmentViewImpl.newInstance()
+                    openFragment(curFragment)
                     true
                 }
                 R.id.navigation_profile -> {
                     val fragment = ProfileFragmentViewImpl.newInstance()
                     fragment.setNavigationCallback(this)
-                    openFragment(fragment)
+                    curFragment = fragment
+                    openFragment(curFragment)
                     true
                 }
                 else -> false
@@ -43,7 +45,27 @@ class BottomNavigationActivity : AppCompatActivity(), ProfileFragmentViewImpl.Na
     private fun openFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.nav_host_fragment, fragment)
-//            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onBackPressed() {
+        when(curFragment) {
+             is EditInfoFragmentViewImpl -> {
+                 navigateToProfileFragment()
+            }
+            is EditPasswordFragmentViewIml -> {
+                navigateToProfileFragment()
+            }
+            else -> super.onBackPressed()
+        }
+    }
+
+    override fun navigateToEditPasswordFragment() {
+        val fragment = EditPasswordFragmentViewIml()
+        fragment.setNavigationCallback(this)
+        curFragment = fragment
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment, curFragment)
             .commit()
     }
 
@@ -56,7 +78,7 @@ class BottomNavigationActivity : AppCompatActivity(), ProfileFragmentViewImpl.Na
         phone: String
     ) {
 
-        val fragment: Fragment = EditInfoFragmentImpl.newInstance(
+        val fragment = EditInfoFragmentViewImpl.newInstance(
             login,
             firstName,
             secondName,
@@ -64,10 +86,18 @@ class BottomNavigationActivity : AppCompatActivity(), ProfileFragmentViewImpl.Na
             phone,
             address
         )
+        fragment.setNavigationCallback(this)
+        curFragment = fragment
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, fragment)
-            .addToBackStack(null)
+            .replace(R.id.nav_host_fragment, curFragment)
             .commit()
+    }
+
+    override fun navigateToProfileFragment() {
+        val fragment = ProfileFragmentViewImpl.newInstance()
+        fragment.setNavigationCallback(this)
+        curFragment = fragment
+        openFragment(curFragment)
     }
 }

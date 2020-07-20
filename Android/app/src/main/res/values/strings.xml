@@ -26,4 +26,7 @@
     <string name="edit">Редактировать</string>
     <string name="change_password">Изменить пароль</string>
     <string name="change">Изменить</string>
+    <string name="old_password">Старый пароль</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="repeat_password">Повторите паролья</string>
 </resources>

@@ -19,7 +19,7 @@ class ProfileFragmentPresenterImpl(
                 login,
                 {
                     view.setLogin(it.login)
-                    view.setName("${it.firstName} ${it.secondName} ${it.middleName}")
+                    view.setName("${it.secondName} ${it.firstName} ${it.middleName}")
                     view.setPhone(it.phone)
                     view.setAddress(it.address)
                     view.hideProgress()
@@ -40,6 +40,6 @@ class ProfileFragmentPresenterImpl(
     }
 
     override fun onChangePasswordButtonClicked() {
-
+        view.navigateToEditPasswordFragment()
     }
 }

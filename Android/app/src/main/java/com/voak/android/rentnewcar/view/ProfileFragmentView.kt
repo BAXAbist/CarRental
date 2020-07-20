@@ -16,4 +16,5 @@ interface ProfileFragmentView {
     fun showErrorMessage()
     fun hideErrorMessage()
     fun navigateToEditInfoFragment()
+    fun navigateToEditPasswordFragment()
 }

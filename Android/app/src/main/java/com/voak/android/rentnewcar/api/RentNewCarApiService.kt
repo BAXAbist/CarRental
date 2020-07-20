@@ -32,12 +32,20 @@ interface RentNewCarApiService {
     suspend fun updateClientInfo(
         @Field("id_client") clientId: Int,
         @Field("login") login: String?,
-        @Field("password") password: String?,
-        @Field("first_name") firstName: String?,
-        @Field("second_name") secondName: String?,
-        @Field("middle_name") middleName: String?,
-        @Field("address") address: String?,
-        @Field("phone") phone: String?
+//        @Field("password") password: String?,
+        @Field("first_name") firstName: String,
+        @Field("second_name") secondName: String,
+        @Field("middle_name") middleName: String,
+        @Field("address") address: String,
+        @Field("phone") phone: String
+    ): Response<String>
+
+    @FormUrlEncoded
+    @POST("updClientPas.php")
+    suspend fun updateClientPassword(
+        @Field("id_client") clientId: Int,
+        @Field("old_pas") oldPassword: String,
+        @Field("new_pas") newPassword: String
     ): Response<String>
 
 }

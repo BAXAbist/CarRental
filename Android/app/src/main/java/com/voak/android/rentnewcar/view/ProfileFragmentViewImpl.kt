@@ -147,12 +147,16 @@ class ProfileFragmentViewImpl : Fragment(), ProfileFragmentView {
     override fun navigateToEditInfoFragment() {
         navigationCallback.navigateToEditInfoFragment(
             loginTextView.text.toString().split(" ")[1],
-            nameTextView.text.toString().split(" ")[1],
             nameTextView.text.toString().split(" ")[2],
+            nameTextView.text.toString().split(" ")[1],
             nameTextView.text.toString().split(" ")[3],
             addressTextView.text.toString().split("Адрес: ")[1],
             phoneTextView.text.toString().split(" ")[1]
         )
+    }
+
+    override fun navigateToEditPasswordFragment() {
+        navigationCallback.navigateToEditPasswordFragment()
     }
 
     fun setNavigationCallback(callback: NavigationCallback) {
@@ -168,5 +172,7 @@ class ProfileFragmentViewImpl : Fragment(), ProfileFragmentView {
             address: String,
             phone: String
         )
+
+        fun navigateToEditPasswordFragment()
     }
 }
