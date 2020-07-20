@@ -15,9 +15,9 @@
         if ($data == 'ok') {
             sendResponse(200, $data);
         } else {
-            sendResponse(400, $data);
+            sendResponse(400, "error");
         }
     }
 
 
-?>2020:07:19 21:38:00
+?>

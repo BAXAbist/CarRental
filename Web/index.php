@@ -10,6 +10,7 @@
   <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
   <script src="js/script.js"></script>    
+  
 </head>
 
 
@@ -17,7 +18,7 @@
   <header>
     <div id = "glogo">
       <div id="logo" onclick="slowScroll('#top')">
-        <img src="image/5.PNG" alt="" class="image">
+        <img src="image/51.jpg" alt="" class="image">
         <span>CARS</span><span style="color:#ffcd7d">4</span><span>RENT</span>        
       </div>
     </div>
@@ -90,7 +91,26 @@
 
 
   <div class="main_4">
-     
+        
+    <script src="/js/generate.js"></script>
+
+    <div class ="head_m4"><h1 class="main_h2">автопарк</h1></div>
+    <form id = "form">
+        <input type="image" name="action1" value="4" src="image/12.jpg" >
+        <input type="image" name="action1" value="0" src="image/12.jpg" >
+        <input type="image" name="action2" value="1" src="image/12.jpg" >
+        <input type="image" name="action3" value="2" src="image/12.jpg" >
+    </form>
+
+    <div id = "result">
+    <?php
+        include_once 'db_php/db2.php';
+        $db = new DB_requests();
+        $cars = $db->getAllCars();
+        foreach($cars as $item) {
+        print $item['brand'];}
+     ?>
+     </div>
   </div>
 
 

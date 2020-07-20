@@ -253,3 +253,33 @@ img.image {
   content: '✔';
   position: absolute; top: 0; left: 0;
   color: #ea5f27;}
+
+.head_m4 {
+  display:flex;
+  justify-content:center;
+}  
+
+
+
+#form {
+    margin:0 auto;
+    display:flex;
+    justify-content:center;
+    width:40%;
+    margin-top:30px;
+}  
+  
+#form input {
+    width:25%;
+}  
+
+#form img{
+ width:100%; 
+ max-width:300px;
+}
+
+#result {
+    display:flex;
+    justify-content:center;
+    margin-top:35px;
+}

@@ -19,8 +19,10 @@
         }
         if ($data == 'ok') {
             sendResponse(200, $data);
+        } elseif ($data == 'unknown car') {
+            sendResponse(400, 'unknown car');
         } else {
-            sendResponse(400, $data);
+            sendResponse(400, "error");
         }
     }
 

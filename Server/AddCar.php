@@ -15,7 +15,7 @@
         if ($data == 'ok') {
             sendResponse(200, $data);
         } else {
-            sendResponse(400, $data);
+            sendResponse(400, "error");
         }
     }
 

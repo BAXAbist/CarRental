@@ -21,8 +21,12 @@
         }
         if ($data == 'ok') {
             sendResponse(200, $data);
+        } elseif ($data == 'unknown client') {
+            sendResponse(400, 'unknown client');
+        } elseif ($data == 'login is already taken') {
+            sendResponse(400, 'login is already taken');
         } else {
-            sendResponse(400, $data);
+            sendResponse(400, "error");
         }
     }
 
