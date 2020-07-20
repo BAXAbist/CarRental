@@ -2,7 +2,10 @@
     class DB_requests {
 
         private function createConnection () {
-            $conn = new PDO('mysql:host = 178.132.201.118 ; dbname=rentnewc_db', 'rentnewc_db', '0O8k8Y8f');
+            $options = array(
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+            );
+            $conn = new PDO('mysql:host = 178.132.201.118 ; dbname=rentnewc_db', 'rentnewc_db', '0O8k8Y8f', $options);
             // Установить режим ошибки PDO в исключение
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -127,18 +130,19 @@
         //@return true if the request was successful or false if an error occurred
         public function DeleteClientByLogin ($login){
             $conn = $this->createConnection ();
-            $flag = True;
+            $result = "";
             try{
                 $sql = "DELETE FROM Clients WHERE login = '$login'";
                 $conn->exec($sql);
+                $result = "ok";
             }
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $flag = False;
+                $result = "error";
             }
             $conn = null;
-            return $flag;
+            return $result;
         }
 
         //Get info about all clients
@@ -151,7 +155,7 @@
                 $sql = "SELECT * FROM Clients";
                 $log = $conn->query($sql);
                 if ($log->rowCount() == 0){
-                    $clients = array('0' => "Clients list is empty");
+                    $clients[] = array('0' => "Clients list is empty");
                 }
                 else{
                     foreach ($log as $row) {                        
@@ -164,12 +168,13 @@
                                                     'address' => $row['address'],
                                                     'phone' => $row['phone']);
                     }
+                    $clients[] = array('0' => "ok");
                 }
             }
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $clients = array('0' => 'error');
+                $clients[] = array('0' => 'error');
             }
             $conn = null;
             return $clients;
@@ -228,6 +233,7 @@
                                                 'icon' => $row['icon'],
                                                 'status' => $row['status']);
                     }
+                    $cars[] = array('0' => "ok");
                 }
             }
             catch(PDOException $e)
@@ -260,6 +266,7 @@
                                                 'icon' => $row['icon'],
                                                 'status' => $row['status']);
                     }
+                    $cars[] = array('0' => "ok");
                 }
             }
             catch(PDOException $e)
@@ -345,6 +352,7 @@
                                             'date_return' => $row['date_return'],
                                             'state'=> $row['state']);
                     }
+                    $cl_history[] = array('0' => "ok");
                 }
             }
             catch(PDOException $e)
@@ -408,7 +416,7 @@
             catch(PDOException $e)
             {
                 // echo $sql . "<br>" . $e->getMessage();
-                $flag = 'error';
+                $flag = "error";
             }
             $conn = null;
             return $flag;
@@ -503,6 +511,44 @@
             return $result;
         }
 
+        //Update Client's password in DB
+        //@$id_client - id of the requested client
+        //@$old_pas - old Client's password
+        //@$new_pas - new Client's password     
+        //@return "ok" if the request was successful. return "unknown client" if this id is not in the DB.
+        //return "wrong old password" if the old password does not match the one in the DB. return "error" if an error occurred
+        public function updateClientPassword ($id_client,$old_pas,$new_pas){
+            $conn = $this->createConnection ();
+            $result = "";
+            try{
+                $sel = "SELECT * FROM Clients WHERE id_client = '$id_client'";                
+                $log = $conn->query($sel);
+                if ($log->rowCount() == 0){                    
+                    $result = "unknown client";
+                }
+                else{
+                    foreach ($log as $row) {
+                        if ($old_pas == $row['password']){
+                            $upd = "UPDATE Clients set password = '$new_pas' where id_client = '$id_client'";
+                            $conn->exec($upd);
+                            $result = "ok";
+                        }
+                        else{
+                            $result = "wrong old password";
+                        }
+                    }
+                }                
+            }
+            catch(PDOException $e)
+            {
+                // echo $sql . "<br>" . $e->getMessage();
+                $result = "error";
+            }
+            $conn = null;
+            return $result;
+        }
+                
+            
         //Update Car's info in DB
         //@$id_car - id of the requested Car
         //@$brand - new(or old) Car's brand
