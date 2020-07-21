@@ -9,6 +9,7 @@
 
             $len = count($data)-1;
             if ($data[$len]['0'] == 'ok') {
+                unset($data[$len]);
                 sendResponse(200, $data);
             } elseif ($data[$len]['0'] == "Client's history is empty"){
                 sendResponse(200, "Client's history is empty");
