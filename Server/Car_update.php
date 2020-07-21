@@ -12,15 +12,15 @@
         $passengers = $_POST['passengers'];
         $bags = $_POST['bags'];
         $doors = $_POST['doors'];
-        $features = $_POST['features'];        
+                
         
         if ($brand == null && $cost == null && $type == null && $icon == null && $status == null && $passengers == null
-            && $bags == null && $doors == null && $features == null){
+            && $bags == null && $doors == null){
             $data == 'ok';
         }
         else{
             $db = new DB_requests();
-            $data = $db->updateCarInfoById($id_car,$brand,$cost,$type,$icon,$status, $passengers, $bags, $doors, $features);
+            $data = $db->updateCarInfoById($id_car,$brand,$cost,$type,$icon,$status, $passengers, $bags, $doors);
         }
         if ($data == 'ok') {
             sendResponse(200, $data);
