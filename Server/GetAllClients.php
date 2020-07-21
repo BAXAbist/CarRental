@@ -7,6 +7,7 @@
         $data = $db->getAllClients();
         $len = count($data)-1;
         if ($data[$len]['0'] == 'ok') {
+            unset($data[$len]);
             sendResponse(200, $data);
         } elseif ($data[$len]['0'] == 'Clients list is empty') {
             sendResponse(400, 'Clients list is empty');
