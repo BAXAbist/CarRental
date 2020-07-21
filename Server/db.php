@@ -202,8 +202,7 @@
                                      'status' => $row['status'],
                                      'passengers' => $row['passengers'],
                                      'bags' => $row['bags'],
-                                     'doors' => $row['doors'],
-                                     'features' => $row['features'],
+                                     'doors' => $row['doors'],                                     
                                      'result' => "ok");
                     }
                 }
@@ -238,8 +237,7 @@
                                                 'status' => $row['status'],
                                                 'passengers' => $row['passengers'],
                                                 'bags' => $row['bags'],
-                                                'doors' => $row['doors'],
-                                                'features' => $row['features']);
+                                                'doors' => $row['doors']);
                     }
                     $cars[] = array('0' => "ok");
                 }
@@ -275,8 +273,7 @@
                                                 'status' => $row['status'],
                                                 'passengers' => $row['passengers'],
                                                 'bags' => $row['bags'],
-                                                'doors' => $row['doors'],
-                                                'features' => $row['features']);
+                                                'doors' => $row['doors']);
                     }
                     $cars[] = array('0' => "ok");
                 }
@@ -505,12 +502,12 @@
         //@$icon - link on the car's icon
         //@$status - Car's status            
         //@return true if the request was successful or false if an error occurred
-        public function addCar ($brand,$cost,$type,$icon,$status,$passengers,$bags,$doors,$features){
+        public function addCar ($brand,$cost,$type,$icon,$status,$passengers,$bags,$doors){
             $conn = $this->createConnection ();            
             $flag = 'ok';
             try{
-                $sql = "INSERT INTO Car_rent (brand,cost,tipe,icon,status,passengers,bags,doors,features)
-                        VALUES ('$brand','$cost','$type','$icon','$status','$passengers','$bags','$doors','$features')";
+                $sql = "INSERT INTO Car_rent (brand,cost,tipe,icon,status,passengers,bags,doors)
+                        VALUES ('$brand','$cost','$type','$icon','$status','$passengers','$bags','$doors')";
                 $conn->exec($sql);
             }
             catch(PDOException $e)
@@ -657,7 +654,7 @@
         //@$icon - new(or old) link on the car's icon
         //@$status - new(or old) Car's status            
         //@return true if the request was successful or false if an error occurred
-        public function updateCarInfoById ($id_car,$brand,$cost,$type,$icon,$status,$passengers,$bags,$doors,$features){
+        public function updateCarInfoById ($id_car,$brand,$cost,$type,$icon,$status,$passengers,$bags,$doors){
             $conn = $this->createConnection ();
             $result = "";
             try{
@@ -691,10 +688,7 @@
                     }
                     if($doors != null){
                         $update .= " doors = '$doors',";
-                    }
-                    if($features != null){
-                        $update .= " features = '$features',";
-                    }            
+                    }                             
                     $update = rtrim($update,",");
                     $upd = "UPDATE Car_rent ". $update. " where id_car = '$id_car'";      
                     $conn->exec($upd);
