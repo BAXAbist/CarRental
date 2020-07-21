@@ -330,6 +330,72 @@
             return $history;
         }
         
+        //Get all history records              
+        //@return history's data(array). The key of the element is the id_history and the value is history's data(array).
+        //the '0' element will be 'History is empty' if table 'History' doesnt contain any records.
+        public function getHistory (){
+            $conn = $this->createConnection ();
+            try{
+                $sql = "SELECT * FROM History";
+                $log = $conn->query($sql);
+                if ($log->rowCount() == 0){
+                    $history[] = array('0' => "History is empty");
+                }
+                else{
+                    foreach ($log as $row) {                        
+                        $history[] =  array('id_history' => $row['id_history'],
+                                                'id_client' => $row['id_client'],
+                                                'id_car' => $row['id_car'],
+                                                'date_issue' => $row['date_issue'],
+                                                'date_return' => $row['date_return'],
+                                                'state' => $row['state']);
+                    }
+                    $history[] = array('0' => "ok");
+                }
+            }
+            catch(PDOException $e)
+            {
+                // echo $sql . "<br>" . $e->getMessage();
+                $history[] = array('0' => 'error');
+            }
+            $conn = null;
+            return $history;
+        }
+
+        //Get all history records with requested status
+        //@$state - requested state      
+        //@return history's data(array). The key of the element is the id_history and the value is history's data(array).
+        //the '0' element will be 'There are no records with this state' if table 'History' doesnt contain cars with requested state.
+        public function getHistoryByState ($state){
+            $conn = $this->createConnection ();
+            try{
+                $sql = "SELECT * FROM History WHERE state = '$state'";
+                $log = $conn->query($sql);
+                if ($log->rowCount() == 0){
+                    $history[] = array('0' => "There are no records with this state");
+                }
+                else{
+                    foreach ($log as $row) {                        
+                        $history[] =  array('id_history' => $row['id_history'],
+                                                'id_client' => $row['id_client'],
+                                                'id_car' => $row['id_car'],
+                                                'date_issue' => $row['date_issue'],
+                                                'date_return' => $row['date_return'],
+                                                'state' => $row['state']);
+                    }
+                    $history[] = array('0' => "ok");
+                }
+            }
+            catch(PDOException $e)
+            {
+                // echo $sql . "<br>" . $e->getMessage();
+                $history[] = array('0' => 'error');
+            }
+            $conn = null;
+            return $history;
+        }
+   
+
         //Get all records of the requested client
         //@$id_client - id of the requested client     
         //@return history data(array). The key of the element is the history's id and the value is history data(array). 
