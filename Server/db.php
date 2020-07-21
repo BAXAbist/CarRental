@@ -200,6 +200,10 @@
                                      'type' => $row['type'],
                                      'icon' => $row['icon'],
                                      'status' => $row['status'],
+                                     'passengers' => $row['passengers'],
+                                     'bags' => $row['bags'],
+                                     'doors' => $row['doors'],
+                                     'features' => $row['features'],
                                      'result' => "ok");
                     }
                 }
@@ -231,7 +235,11 @@
                                                 'cost' => $row['cost'],
                                                 'type' => $row['type'],
                                                 'icon' => $row['icon'],
-                                                'status' => $row['status']);
+                                                'status' => $row['status'],
+                                                'passengers' => $row['passengers'],
+                                                'bags' => $row['bags'],
+                                                'doors' => $row['doors'],
+                                                'features' => $row['features']);
                     }
                     $cars[] = array('0' => "ok");
                 }
@@ -264,7 +272,11 @@
                                                 'cost' => $row['cost'],
                                                 'type' => $row['type'],
                                                 'icon' => $row['icon'],
-                                                'status' => $row['status']);
+                                                'status' => $row['status'],
+                                                'passengers' => $row['passengers'],
+                                                'bags' => $row['bags'],
+                                                'doors' => $row['doors'],
+                                                'features' => $row['features']);
                     }
                     $cars[] = array('0' => "ok");
                 }
@@ -493,12 +505,12 @@
         //@$icon - link on the car's icon
         //@$status - Car's status            
         //@return true if the request was successful or false if an error occurred
-        public function addCar ($brand,$cost,$type,$icon,$status){
+        public function addCar ($brand,$cost,$type,$icon,$status,$passengers,$bags,$doors,$features){
             $conn = $this->createConnection ();            
             $flag = 'ok';
             try{
-                $sql = "INSERT INTO Car_rent (brand,cost,tipe,icon,status)
-                        VALUES ('$brand','$cost','$type','$icon','$status')";
+                $sql = "INSERT INTO Car_rent (brand,cost,tipe,icon,status,passengers,bags,doors,features)
+                        VALUES ('$brand','$cost','$type','$icon','$status','$passengers','$bags','$doors','$features')";
                 $conn->exec($sql);
             }
             catch(PDOException $e)
@@ -645,7 +657,7 @@
         //@$icon - new(or old) link on the car's icon
         //@$status - new(or old) Car's status            
         //@return true if the request was successful or false if an error occurred
-        public function updateCarInfoById ($id_car,$brand,$cost,$type,$icon,$status){
+        public function updateCarInfoById ($id_car,$brand,$cost,$type,$icon,$status,$passengers,$bags,$doors,$features){
             $conn = $this->createConnection ();
             $result = "";
             try{
@@ -670,6 +682,18 @@
                     }
                     if($status != null){
                         $update .= " status = '$status',";
+                    }
+                    if($passengers != null){
+                        $update .= " passengers = '$passengers',";
+                    }
+                    if($bags != null){
+                        $update .= " bags = '$bags',";
+                    }
+                    if($doors != null){
+                        $update .= " doors = '$doors',";
+                    }
+                    if($features != null){
+                        $update .= " features = '$features',";
                     }            
                     $update = rtrim($update,",");
                     $upd = "UPDATE Car_rent ". $update. " where id_car = '$id_car'";      
