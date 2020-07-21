@@ -364,6 +364,28 @@
             return $cl_history;
         }
 
+        //Delete History record info from DB
+        //@$id_history - id requested history     
+        //@return true if the request was successful or false if an error occurred
+        public function DeleteHistoryById ($id_history){
+            $conn = $this->createConnection ();
+            $result = "";
+            try{
+                $sql = "DELETE FROM History WHERE id_history = '$id_history'";
+                $conn->exec($sql);
+                $result = "ok";
+            }
+            catch(PDOException $e)
+            {
+                // echo $sql . "<br>" . $e->getMessage();
+                $result = "error";
+            }
+            $conn = null;
+            return $result;
+        }
+
+
+
         //Add Client's info in DB
         //@$login - Client's login
         //@$password - Client's password
