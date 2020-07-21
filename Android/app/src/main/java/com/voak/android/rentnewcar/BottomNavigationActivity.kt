@@ -8,19 +8,23 @@ import com.voak.android.rentnewcar.view.*
 
 
 class BottomNavigationActivity : AppCompatActivity(), ProfileFragmentViewImpl.NavigationCallback,
-    EditInfoFragmentViewImpl.NavigationCallback, EditPasswordFragmentViewIml.NavigationCallback {
+    EditInfoFragmentViewImpl.NavigationCallback, EditPasswordFragmentViewIml.NavigationCallback,
+    CarsFragmentViewImpl.NavigationCallback, CarItemFragmentViewImpl.NavigationCallback {
 
     private lateinit var curFragment: Fragment
+    private lateinit var navView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_navigation)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        navView = findViewById(R.id.nav_view)
 
         navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_cars -> {
-                    curFragment = CarsFragmentViewImpl.newInstance()
+                    val fragment = CarsFragmentViewImpl.newInstance()
+                    fragment.setNavigationCallback(this)
+                    curFragment = fragment
                     openFragment(curFragment)
                     true
                 }
@@ -55,6 +59,12 @@ class BottomNavigationActivity : AppCompatActivity(), ProfileFragmentViewImpl.Na
             }
             is EditPasswordFragmentViewIml -> {
                 navigateToProfileFragment()
+            }
+            is CarItemFragmentViewImpl -> {
+                val fragment = CarsFragmentViewImpl.newInstance()
+                fragment.setNavigationCallback(this)
+                curFragment = fragment
+                openFragment(curFragment)
             }
             else -> super.onBackPressed()
         }
@@ -99,5 +109,16 @@ class BottomNavigationActivity : AppCompatActivity(), ProfileFragmentViewImpl.Na
         fragment.setNavigationCallback(this)
         curFragment = fragment
         openFragment(curFragment)
+    }
+
+    override fun navigateToCarItemFragment(carId: Int) {
+        val fragment = CarItemFragmentViewImpl.newInstance(carId)
+        fragment.setNavigationCallback(this)
+        curFragment = fragment
+        openFragment(curFragment)
+    }
+
+    override fun navigateToHistoryFragment() {
+        navView.selectedItemId = R.id.navigation_history
     }
 }

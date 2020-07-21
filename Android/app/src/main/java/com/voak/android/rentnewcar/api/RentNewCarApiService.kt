@@ -1,5 +1,6 @@
 package com.voak.android.rentnewcar.api
 
+import com.voak.android.rentnewcar.model.Car
 import com.voak.android.rentnewcar.model.UserData
 import retrofit2.Response
 import retrofit2.http.*
@@ -47,5 +48,11 @@ interface RentNewCarApiService {
         @Field("old_pas") oldPassword: String,
         @Field("new_pas") newPassword: String
     ): Response<String>
+
+    @GET("GetCarsByStatus.php")
+    suspend fun getCars(@Query("status") status: String) : Response<List<Car>>
+
+    @GET("GetCarById.php")
+    suspend fun getCarById(@Query("id_car") carId: Int): Response<Car>
 
 }

@@ -1,6 +1,5 @@
 package com.voak.android.rentnewcar.repository
 
-import android.util.Log
 import com.voak.android.rentnewcar.api.RentNewCarApiService
 import com.voak.android.rentnewcar.model.Car
 import kotlinx.coroutines.CoroutineScope
@@ -9,20 +8,16 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CarsFragmentRepositoryImpl(val apiService: RentNewCarApiService) : CarsFragmentRepository {
+class CarItemFragmentRepositoryImpl(val apiService: RentNewCarApiService) : CarItemFragmentRepository {
 
-    override fun getCars(resultOk: (List<Car>) -> Unit, resultError: (String) -> Unit) {
-        Log.i("REPOSITORY", "1")
+    override fun getCar(carId: Int, resultOk: (Car) -> Unit, resultError: (String) -> Unit) {
         CoroutineScope(IO).launch {
-            Log.i("REPOSITORY", "2")
-            val result = apiService.getCars("active")
-            Log.i("REPOSITORY", "3")
+            val result = apiService.getCarById(carId)
+
             withContext(Main) {
                 if (result.isSuccessful) {
-                    Log.i("REPOSITORY", result.body().toString())
                     resultOk.invoke(result.body()!!)
                 } else {
-                    Log.i("REPOSITORY", result.errorBody()!!.string())
                     resultError.invoke(result.errorBody()!!.string())
                 }
             }
