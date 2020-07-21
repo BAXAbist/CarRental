@@ -8,14 +8,19 @@
         $cost = $_POST['cost'];
         $type = $_POST['type'];
         $icon = $_POST['icon'];
-        $status = $_POST['status'];        
+        $status = $_POST['status'];
+        $passengers = $_POST['passengers'];
+        $bags = $_POST['bags'];
+        $doors = $_POST['doors'];
+                
         
-        if ($brand == null && $cost == null && $type == null && $icon == null && $status == null){
+        if ($brand == null && $cost == null && $type == null && $icon == null && $status == null && $passengers == null
+            && $bags == null && $doors == null){
             $data == 'ok';
         }
         else{
             $db = new DB_requests();
-            $data = $db->updateCarInfoById($id_car,$brand,$cost,$type,$icon,$status);
+            $data = $db->updateCarInfoById($id_car,$brand,$cost,$type,$icon,$status, $passengers, $bags, $doors);
         }
         if ($data == 'ok') {
             sendResponse(200, $data);

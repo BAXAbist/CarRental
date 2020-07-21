@@ -9,6 +9,7 @@
 
             $len = count($data)-1;
             if ($data[$len]['0'] == 'ok') {
+                unset($data[$len]);
                 sendResponse(200, $data);
             } elseif ($data[$len]['0'] == 'There are no cars with this status'){
                 sendResponse(200, "There are no cars with this status");

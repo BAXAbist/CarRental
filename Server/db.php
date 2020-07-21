@@ -200,6 +200,9 @@
                                      'type' => $row['type'],
                                      'icon' => $row['icon'],
                                      'status' => $row['status'],
+                                     'passengers' => $row['passengers'],
+                                     'bags' => $row['bags'],
+                                     'doors' => $row['doors'],                                     
                                      'result' => "ok");
                     }
                 }
@@ -231,7 +234,10 @@
                                                 'cost' => $row['cost'],
                                                 'type' => $row['type'],
                                                 'icon' => $row['icon'],
-                                                'status' => $row['status']);
+                                                'status' => $row['status'],
+                                                'passengers' => $row['passengers'],
+                                                'bags' => $row['bags'],
+                                                'doors' => $row['doors']);
                     }
                     $cars[] = array('0' => "ok");
                 }
@@ -264,7 +270,10 @@
                                                 'cost' => $row['cost'],
                                                 'type' => $row['type'],
                                                 'icon' => $row['icon'],
-                                                'status' => $row['status']);
+                                                'status' => $row['status'],
+                                                'passengers' => $row['passengers'],
+                                                'bags' => $row['bags'],
+                                                'doors' => $row['doors']);
                     }
                     $cars[] = array('0' => "ok");
                 }
@@ -330,6 +339,72 @@
             return $history;
         }
         
+        //Get all history records              
+        //@return history's data(array). The key of the element is the id_history and the value is history's data(array).
+        //the '0' element will be 'History is empty' if table 'History' doesnt contain any records.
+        public function getHistory (){
+            $conn = $this->createConnection ();
+            try{
+                $sql = "SELECT * FROM History";
+                $log = $conn->query($sql);
+                if ($log->rowCount() == 0){
+                    $history[] = array('0' => "History is empty");
+                }
+                else{
+                    foreach ($log as $row) {                        
+                        $history[] =  array('id_history' => $row['id_history'],
+                                                'id_client' => $row['id_client'],
+                                                'id_car' => $row['id_car'],
+                                                'date_issue' => $row['date_issue'],
+                                                'date_return' => $row['date_return'],
+                                                'state' => $row['state']);
+                    }
+                    $history[] = array('0' => "ok");
+                }
+            }
+            catch(PDOException $e)
+            {
+                // echo $sql . "<br>" . $e->getMessage();
+                $history[] = array('0' => 'error');
+            }
+            $conn = null;
+            return $history;
+        }
+
+        //Get all history records with requested status
+        //@$state - requested state      
+        //@return history's data(array). The key of the element is the id_history and the value is history's data(array).
+        //the '0' element will be 'There are no records with this state' if table 'History' doesnt contain cars with requested state.
+        public function getHistoryByState ($state){
+            $conn = $this->createConnection ();
+            try{
+                $sql = "SELECT * FROM History WHERE state = '$state'";
+                $log = $conn->query($sql);
+                if ($log->rowCount() == 0){
+                    $history[] = array('0' => "There are no records with this state");
+                }
+                else{
+                    foreach ($log as $row) {                        
+                        $history[] =  array('id_history' => $row['id_history'],
+                                                'id_client' => $row['id_client'],
+                                                'id_car' => $row['id_car'],
+                                                'date_issue' => $row['date_issue'],
+                                                'date_return' => $row['date_return'],
+                                                'state' => $row['state']);
+                    }
+                    $history[] = array('0' => "ok");
+                }
+            }
+            catch(PDOException $e)
+            {
+                // echo $sql . "<br>" . $e->getMessage();
+                $history[] = array('0' => 'error');
+            }
+            $conn = null;
+            return $history;
+        }
+   
+
         //Get all records of the requested client
         //@$id_client - id of the requested client     
         //@return history data(array). The key of the element is the history's id and the value is history data(array). 
@@ -363,6 +438,28 @@
             $conn = null;
             return $cl_history;
         }
+
+        //Delete History record info from DB
+        //@$id_history - id requested history     
+        //@return true if the request was successful or false if an error occurred
+        public function DeleteHistoryById ($id_history){
+            $conn = $this->createConnection ();
+            $result = "";
+            try{
+                $sql = "DELETE FROM History WHERE id_history = '$id_history'";
+                $conn->exec($sql);
+                $result = "ok";
+            }
+            catch(PDOException $e)
+            {
+                // echo $sql . "<br>" . $e->getMessage();
+                $result = "error";
+            }
+            $conn = null;
+            return $result;
+        }
+
+
 
         //Add Client's info in DB
         //@$login - Client's login
@@ -405,12 +502,12 @@
         //@$icon - link on the car's icon
         //@$status - Car's status            
         //@return true if the request was successful or false if an error occurred
-        public function addCar ($brand,$cost,$type,$icon,$status){
+        public function addCar ($brand,$cost,$type,$icon,$status,$passengers,$bags,$doors){
             $conn = $this->createConnection ();            
             $flag = 'ok';
             try{
-                $sql = "INSERT INTO Car_rent (brand,cost,tipe,icon,status)
-                        VALUES ('$brand','$cost','$type','$icon','$status')";
+                $sql = "INSERT INTO Car_rent (brand,cost,tipe,icon,status,passengers,bags,doors)
+                        VALUES ('$brand','$cost','$type','$icon','$status','$passengers','$bags','$doors')";
                 $conn->exec($sql);
             }
             catch(PDOException $e)
@@ -557,7 +654,7 @@
         //@$icon - new(or old) link on the car's icon
         //@$status - new(or old) Car's status            
         //@return true if the request was successful or false if an error occurred
-        public function updateCarInfoById ($id_car,$brand,$cost,$type,$icon,$status){
+        public function updateCarInfoById ($id_car,$brand,$cost,$type,$icon,$status,$passengers,$bags,$doors){
             $conn = $this->createConnection ();
             $result = "";
             try{
@@ -582,7 +679,16 @@
                     }
                     if($status != null){
                         $update .= " status = '$status',";
-                    }            
+                    }
+                    if($passengers != null){
+                        $update .= " passengers = '$passengers',";
+                    }
+                    if($bags != null){
+                        $update .= " bags = '$bags',";
+                    }
+                    if($doors != null){
+                        $update .= " doors = '$doors',";
+                    }                             
                     $update = rtrim($update,",");
                     $upd = "UPDATE Car_rent ". $update. " where id_car = '$id_car'";      
                     $conn->exec($upd);
