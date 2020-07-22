@@ -9,3 +9,7 @@ C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\bin\Debug\Desktop.exe
 C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\bin\Debug\Desktop.pdb
 C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.exe
 C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.pdb
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\bin\Debug\Newtonsoft.Json.dll
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\bin\Debug\Newtonsoft.Json.xml
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.csproj.CopyComplete
+C:\Users\tolik\source\repos\CarRental\Desktop\Desktop\obj\Debug\Desktop.Form_UpdateClient.resources
