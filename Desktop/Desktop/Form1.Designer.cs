@@ -33,18 +33,15 @@
             this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_car = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Button_AddCar = new System.Windows.Forms.Button();
             this.Button_DelCar = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Button_UpdateCar = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MiddleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.FirstName_Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,7 +52,12 @@
             this.date_issue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.Button_UpdateCar = new System.Windows.Forms.Button();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MiddleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_client = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -74,12 +76,12 @@
             this.Photo,
             this.brand,
             this.type,
-            this.cost});
+            this.cost,
+            this.id_car});
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(630, 497);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Photo
             // 
@@ -91,16 +93,25 @@
             // 
             this.brand.HeaderText = "Марка";
             this.brand.Name = "brand";
+            this.brand.ReadOnly = true;
             // 
             // type
             // 
             this.type.HeaderText = "Категория";
             this.type.Name = "type";
+            this.type.ReadOnly = true;
             // 
             // cost
             // 
             this.cost.HeaderText = "Стоим-ть";
             this.cost.Name = "cost";
+            this.cost.ReadOnly = true;
+            // 
+            // id_car
+            // 
+            this.id_car.HeaderText = "ID";
+            this.id_car.Name = "id_car";
+            this.id_car.Visible = false;
             // 
             // Button_AddCar
             // 
@@ -147,6 +158,16 @@
             this.tabPage1.Text = "Авто";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // Button_UpdateCar
+            // 
+            this.Button_UpdateCar.Location = new System.Drawing.Point(480, 509);
+            this.Button_UpdateCar.Name = "Button_UpdateCar";
+            this.Button_UpdateCar.Size = new System.Drawing.Size(75, 23);
+            this.Button_UpdateCar.TabIndex = 3;
+            this.Button_UpdateCar.Text = "Изменить";
+            this.Button_UpdateCar.UseVisualStyleBackColor = true;
+            this.Button_UpdateCar.Click += new System.EventHandler(this.Button_UpdateCar_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.richTextBox1);
@@ -176,41 +197,12 @@
             this.MiddleName,
             this.SecondName,
             this.Phone,
-            this.Address});
+            this.Address,
+            this.id_client});
             this.dataGridView2.Location = new System.Drawing.Point(7, 7);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(630, 497);
             this.dataGridView2.TabIndex = 0;
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "Имя";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            // 
-            // MiddleName
-            // 
-            this.MiddleName.HeaderText = "Отчество";
-            this.MiddleName.Name = "MiddleName";
-            this.MiddleName.ReadOnly = true;
-            // 
-            // SecondName
-            // 
-            this.SecondName.HeaderText = "Фамилия";
-            this.SecondName.Name = "SecondName";
-            this.SecondName.ReadOnly = true;
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Телефон";
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "Адрес";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
             // 
             // tabPage3
             // 
@@ -288,14 +280,43 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // Button_UpdateCar
+            // FirstName
             // 
-            this.Button_UpdateCar.Location = new System.Drawing.Point(480, 509);
-            this.Button_UpdateCar.Name = "Button_UpdateCar";
-            this.Button_UpdateCar.Size = new System.Drawing.Size(75, 23);
-            this.Button_UpdateCar.TabIndex = 3;
-            this.Button_UpdateCar.Text = "Изменить";
-            this.Button_UpdateCar.UseVisualStyleBackColor = true;
+            this.FirstName.HeaderText = "Имя";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            // 
+            // MiddleName
+            // 
+            this.MiddleName.HeaderText = "Отчество";
+            this.MiddleName.Name = "MiddleName";
+            this.MiddleName.ReadOnly = true;
+            // 
+            // SecondName
+            // 
+            this.SecondName.HeaderText = "Фамилия";
+            this.SecondName.Name = "SecondName";
+            this.SecondName.ReadOnly = true;
+            // 
+            // Phone
+            // 
+            this.Phone.HeaderText = "Телефон";
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            // 
+            // Address
+            // 
+            this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Address.HeaderText = "Адрес";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            this.Address.Width = 63;
+            // 
+            // id_client
+            // 
+            this.id_client.HeaderText = "id";
+            this.id_client.Name = "id_client";
+            this.id_client.ReadOnly = true;
             // 
             // Form1
             // 
@@ -304,7 +325,7 @@
             this.ClientSize = new System.Drawing.Size(667, 581);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Car4Rent";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoadToServer);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -329,15 +350,6 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.DataGridViewImageColumn Photo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brand;
-        private System.Windows.Forms.DataGridViewTextBoxColumn type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MiddleName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SecondName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName_Order;
         private System.Windows.Forms.DataGridViewTextBoxColumn SecondName_Order;
         private System.Windows.Forms.DataGridViewTextBoxColumn Phone_Order;
@@ -347,6 +359,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Date_return;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button Button_UpdateCar;
+        private System.Windows.Forms.DataGridViewImageColumn Photo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn brand;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_car;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MiddleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SecondName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_client;
     }
 }
 

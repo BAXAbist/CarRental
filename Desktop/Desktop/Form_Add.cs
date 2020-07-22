@@ -12,11 +12,27 @@ namespace Desktop
 {
     public partial class Form_Add : Form
     {
+        bool update = false;
         Form1 parent;
+        int id;
         public Form_Add(Form1 parent)
         {
             this.parent = parent;
             InitializeComponent();
+        }
+
+        public Form_Add(Form1 parent, string[] datacar, Bitmap i, int id)
+        {
+            InitializeComponent();
+            this.parent = parent;
+            update = true;
+            this.id = id;
+            textBox2.Text = datacar[0];
+            textBox3.Text = datacar[2];
+            textBox4.Text = datacar[1];
+            pictureBox1.Image = i;
+            this.Text = "Изменить Авто";
+            button2.Text = "Изменить";
         }
 
         OpenFileDialog OpenFile = new OpenFileDialog();
@@ -35,7 +51,13 @@ namespace Desktop
         private void button2_Click(object sender, EventArgs e)
         {
             string[] res = { textBox2.Text, textBox3.Text, textBox4.Text };
-            parent.AddNewCar(res, textBox1.Text);
+            if (update)
+            {
+                parent.UpdateCar(res, textBox1.Text, id);
+                update = false;
+            }
+            else
+                parent.AddNewCar(res, textBox1.Text);
             this.Close();
         }
     }
