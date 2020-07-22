@@ -253,10 +253,11 @@ img.image {
   content: '✔';
   position: absolute; top: 0; left: 0;
   color: #ea5f27;}
-
+  
 .head_m4 {
-  display:flex;
-  justify-content:center;
+    display:flex;
+    justify-content:center;
+    margin: 50px 0; 
 }  
 
 
@@ -265,21 +266,187 @@ img.image {
     margin:0 auto;
     display:flex;
     justify-content:center;
-    width:40%;
+    width:60%;
     margin-top:30px;
 }  
   
 #form input {
     width:25%;
+    border: 1px solid grey;
+    margin-right:-1px;
+    background:red;
 }  
 
 #form img{
- width:100%; 
- max-width:300px;
+    width:100%; 
+    max-width:300px;
 }
 
 #result {
+    
+    width:60%;
+    margin: 0 auto;
+    min-height:505px;
+    margin-top:35px;
+    height:100%;
+    
+}
+
+.car_box {
+    float:left;
+    width:30%;
+    margin-left:2.4%;
+    
+    
+}
+
+.car_brand {
+    float:left;
+    height: 75px;
+    
+    margin-top:25px;
+  
+    font-size: 1.2em;
+    
+    font-weight: bolder;
+    font-family: 'Verdana', serif;
+    text-transform: uppercase;
+}
+
+.car_cost {
+    float:right;
+    height: 75px;
+    
+    margin-top:25px;
+    color: #ea5f27;
+    
+    
+    font-weight: bolder;
+    font-family: 'Verdana', serif;
+    
+}
+
+
+.main_5 {
+    background-color:#3A3A3A;
+    
+}
+
+.head_m5 {
     display:flex;
     justify-content:center;
-    margin-top:35px;
+    
 }
+
+.main_h5 {
+    margin-top:50px;
+    text-transform: uppercase;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: 'Verdana', serif;
+    color:white;
+}
+
+.box_m5 {
+    width:50%;
+    display:flex;
+    justify-content:center;
+    margin-left:17%;
+    
+    margin-top:25px;
+    
+}
+
+.list_m5 {
+    color:white;
+    margin-bottom:25px;
+}
+
+.main_6 {
+    background-color: #2E2E2E;
+    display:flex;
+    justify-content:center;
+    
+}
+.main_6 p {
+    margin-top:10px;
+    color:white;
+    
+}
+.but_div1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:25px;
+}
+.m_2_button1 {
+  height: 50px;
+  width: 200px;
+  background-color: #373737;
+  color: #eee;
+  font-style: oblique;
+  font-weight: bolder;
+  text-transform: uppercase;
+  border:0px;
+  font-family: 'Verdana', serif;
+}
+.m_2_button1:hover {
+  background-color: #ea5f27;
+}
+
+
+.overlay {
+    position:absolute;
+    width:100%;
+    height:100vh;
+    top:0;
+    left:0;
+    display: none;
+}
+
+.popup {
+    position:absolute;
+    width:400px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    padding:40px;
+    
+    background-color:#ff5252;
+}
+
+.close-popup {
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:23px;
+    height:23px;
+    cursor: pointer;
+}
+
+.close-popup:before {
+    content: '';
+    background-color: #fff;
+    position:absolute;
+    height:1px;
+    width:31px;
+    top:11px;
+    left:-4px;
+    transform:rotate(-45deg);
+}
+
+.close-popup:after {
+    content: '';
+    background-color: #fff;
+    position:absolute;
+    height:1px;
+    width:31px;
+    top:11px;
+    left:-4px;
+    transform:rotate(45deg);
+}
+
+
+
+

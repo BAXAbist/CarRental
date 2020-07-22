@@ -9,26 +9,27 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
-  <script src="js/script.js"></script>    
+   
+  
   
 </head>
 
 
 <body>
+  <main>
   <header>
     <div id = "glogo">
-      <div id="logo" onclick="slowScroll('#top')">
+      <div id="logo" onclick="slowScroll('.step')">
         <img src="image/51.jpg" alt="" class="image">
         <span>CARS</span><span style="color:#ffcd7d">4</span><span>RENT</span>        
       </div>
     </div>
 
     <div id="about">
-      <a href="#" title="Главная" onclick="slowScroll('#main')"">Главная</a>
-      <a href="#" onclick="slowScroll('#overview')" title="Автопарк">Автопарк</a>
-      <a href="#" onclick="slowScroll('#contacts')" title="Контакты">Контакты</a>
-      <a href="#" onclick="slowScroll('#faq')" title="Ответы на вопросы">FAQ</a>
-      <a href="#" title="Login">Login</a>
+      <a href="#" title="Главная" onclick="slowScroll('.step')">Главная</a>
+      <a href="#" onclick="slowScroll('.main_4')" title="Автопарк">Автопарк</a>
+      <a href="#" onclick="slowScroll('.main_5')" title="Контакты">Контакты</a>
+      <a href="#" title="Login" class = "button js-button-campaign">Login</a>
     </div>
   </header>
   <div class="step"></div>
@@ -96,25 +97,58 @@
 
     <div class ="head_m4"><h1 class="main_h2">автопарк</h1></div>
     <form id = "form">
-        <input type="image" name="action1" value="4" src="image/12.jpg" >
-        <input type="image" name="action1" value="0" src="image/12.jpg" >
-        <input type="image" name="action2" value="1" src="image/12.jpg" >
-        <input type="image" name="action3" value="2" src="image/12.jpg" >
+        <input type="image" name="action1" value="ALL" src="image/cm_all.jpg" > 
+        <input type="image" name="action1" value="0" src="image/cm4.jpg" >
+        <input type="image" name="action2" value="1" src="image/cm2.jpg" >
+        <input type="image" name="action3" value="2" src="image/cm3.jpg" >
     </form>
 
     <div id = "result">
     <?php
+    
         include_once 'db_php/db2.php';
         $db = new DB_requests();
         $cars = $db->getAllCars();
         foreach($cars as $item) {
-        print $item['brand'];}
-     ?>
+                if ($item['brand'] == ""){
+                    continue;
+                }
+                echo '<div class = "car_box">'; 
+                echo '<img src="', htmlspecialchars(urlencode($item['icon'])),'" style = "width:100%;max-width:400px;"/>';
+                echo "<div class = 'car_text'>"."<div class = 'car_brand'>".$item['brand']."</div>"."<div class = 'car_cost'>".$item['cost']." руб/день</div>"."</div>";
+                echo "</div>";
+                };
+            
+    ?> 
      </div>
+     <div class="but_div1"><button class="m_2_button1">Сделать заказ</button></div> 
   </div>
-
-
-
+  
+  <div class = "main_5">
+      <div class = "head_m5"><h1 class="main_h5">контактная информация</h1></div>
+      <div class = "box_m5">
+          <ul class = "list_m5">
+            <li class = "ch_list">адресс</li>
+            <li class = "ch_list">номер</li>
+            <li class = "ch_list">мейл</li>
+          </ul>
+      </div>
+  </div>
+  
+  <div class = "main_6">
+      <p>follow us</p>
+  </div>
+  </main>
+  <div class = "overlay js-overlay-campaign">
+      <form class = "popup js-popup-campaign">
+          <input type = "text" name = "login" placeholder = "login"><br>
+          <input type = "text" name = "password" placeholder = "password"><br>
+          <button id = 'but_auth'>Авторизация</button>
+          <div class = "close-popup js-close-campaign"></div>
+      </form>
+      
+  </div>
+  <script src="js/script.js"></script>     
   <!--slow scroll-->
   
   <script>
