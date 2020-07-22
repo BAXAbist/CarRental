@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Photo = new System.Windows.Forms.DataGridViewImageColumn();
-            this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_car = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Button_AddCar = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -63,6 +57,12 @@
             this.Date_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.state = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_history = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Photo = new System.Windows.Forms.DataGridViewImageColumn();
+            this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_car = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -89,42 +89,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(729, 497);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // Photo
-            // 
-            this.Photo.HeaderText = "Фото";
-            this.Photo.Name = "Photo";
-            this.Photo.ReadOnly = true;
-            // 
-            // brand
-            // 
-            this.brand.HeaderText = "Марка";
-            this.brand.Name = "brand";
-            this.brand.ReadOnly = true;
-            // 
-            // type
-            // 
-            this.type.HeaderText = "Категория";
-            this.type.Name = "type";
-            this.type.ReadOnly = true;
-            // 
-            // cost
-            // 
-            this.cost.HeaderText = "Стоим-ть";
-            this.cost.Name = "cost";
-            this.cost.ReadOnly = true;
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Статус";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            // 
-            // id_car
-            // 
-            this.id_car.HeaderText = "ID";
-            this.id_car.Name = "id_car";
-            this.id_car.Visible = false;
             // 
             // Button_AddCar
             // 
@@ -365,6 +329,7 @@
             this.state.HeaderText = "Статус";
             this.state.Name = "state";
             this.state.ReadOnly = true;
+            this.state.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // id_history
             // 
@@ -372,6 +337,43 @@
             this.id_history.Name = "id_history";
             this.id_history.ReadOnly = true;
             this.id_history.Visible = false;
+            // 
+            // Photo
+            // 
+            this.Photo.HeaderText = "Фото";
+            this.Photo.Name = "Photo";
+            this.Photo.ReadOnly = true;
+            // 
+            // brand
+            // 
+            this.brand.HeaderText = "Марка";
+            this.brand.Name = "brand";
+            this.brand.ReadOnly = true;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Категория";
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            // 
+            // cost
+            // 
+            this.cost.HeaderText = "Стоим-ть";
+            this.cost.Name = "cost";
+            this.cost.ReadOnly = true;
+            // 
+            // status
+            // 
+            this.status.HeaderText = "Статус";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // id_car
+            // 
+            this.id_car.HeaderText = "ID";
+            this.id_car.Name = "id_car";
+            this.id_car.Visible = false;
             // 
             // Form1
             // 
@@ -406,12 +408,6 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button Button_UpdateCar;
         private System.Windows.Forms.Button button_UpdateClient;
-        private System.Windows.Forms.DataGridViewImageColumn Photo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brand;
-        private System.Windows.Forms.DataGridViewTextBoxColumn type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_car;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn MiddleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn SecondName;
@@ -429,6 +425,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Date_return;
         private System.Windows.Forms.DataGridViewTextBoxColumn state;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_history;
+        private System.Windows.Forms.DataGridViewImageColumn Photo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn brand;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_car;
     }
 }
 

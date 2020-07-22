@@ -30,7 +30,10 @@ namespace Desktop
             textBox2.Text = datacar[0];
             textBox3.Text = datacar[2];
             textBox4.Text = datacar[1];
+            comboBox1.Text = datacar[3];
             pictureBox1.Image = i;
+            comboBox1.Visible = true;
+            label1.Visible = true;
             this.Text = "Изменить Авто";
             button2.Text = "Изменить";
         }
@@ -50,7 +53,7 @@ namespace Desktop
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string[] res = { textBox2.Text, textBox3.Text, textBox4.Text };
+            string[] res = { textBox2.Text, textBox3.Text, textBox4.Text,comboBox1.Text};
             if (update)
             {
                 parent.UpdateCar(res, textBox1.Text, id);

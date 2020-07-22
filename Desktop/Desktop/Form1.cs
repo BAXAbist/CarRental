@@ -20,7 +20,7 @@ using System.IO;
 //добавить завершить или отменить заказ +
 //создать таблицу заказов по id  +
 //загрузка картинок на хостинг
-//выгрузка на сервер данных
+//выгрузка на сервер данных +
 
 namespace Desktop
 {
@@ -54,11 +54,14 @@ namespace Desktop
                 id_car1 = 0;
             id_car1++;
             dataGridView1.Rows.Add(i,row[0],row[2],row[1],"active", id_car1);
-            var imgconv = new ImageConverter();
-            var bite = (byte[])imgconv.ConvertTo(i, typeof(byte[]));
-
+            web.UploadFile("https://www.rentnewcar.ffox.site/api/GetAllCars.php", "VAZ.jpg");
+            //var imgconv = new ImageConverter();
+            //var bite = (byte[])imgconv.ConvertTo(i, typeof(byte[]));
             //WebRequest request = (HttpWebRequest)WebRequest.Create("https://www.rentnewcar.ffox.site/api/GetAllCars.php");
             //request.Method = "POST";
+            //string sName = "icon=";
+            //byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(sName);
+            //byteArray
             //отправить запрос
         }
 
@@ -99,12 +102,13 @@ namespace Desktop
                     dataGridView1[1, i].Value = row[0];
                     dataGridView1[2, i].Value = row[2];
                     dataGridView1[3, i].Value = row[1];
+                    dataGridView1[4, i].Value = row[3];
                 }
             }
 
             WebRequest request = (HttpWebRequest)WebRequest.Create("https://www.rentnewcar.ffox.site/api/Car_update.php");
             request.Method = "POST";
-            string sName = "id_car="+id+"&brand=" + row[0] + "&cost=" + row[1] + "&type="+ row[2];
+            string sName = "id_car="+id+"&brand=" + row[0] + "&cost=" + row[1] + "&type="+ row[2] + "&status="+row[3];
             byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(sName);
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = byteArray.Length;
@@ -122,7 +126,7 @@ namespace Desktop
             if (selectedCellCount > 1)
             {
                 string[] data = { dataGridView1.SelectedCells[1].Value.ToString(),
-                    dataGridView1.SelectedCells[2].Value.ToString(), dataGridView1.SelectedCells[3].Value.ToString() };
+                    dataGridView1.SelectedCells[2].Value.ToString(), dataGridView1.SelectedCells[3].Value.ToString(), dataGridView1.SelectedCells[4].Value.ToString() };
                 if (add == null || add.IsDisposed)
                 {
                     add = new Form_Add(this, data, (Bitmap)dataGridView1.SelectedCells[0].Value, Convert.ToInt32(dataGridView1.SelectedCells[5].Value));
