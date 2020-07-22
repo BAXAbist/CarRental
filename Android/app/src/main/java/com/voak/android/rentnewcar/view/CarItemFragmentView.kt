@@ -1,5 +1,7 @@
 package com.voak.android.rentnewcar.view
 
+import java.util.*
+
 interface CarItemFragmentView {
     fun showProgress()
     fun hideProgress()
@@ -16,4 +18,7 @@ interface CarItemFragmentView {
     fun setPassengersCount(passengers: Int)
     fun setBagsCount(bags: Int)
     fun setDoorsCount(doors: Int)
+    fun openDatePickerFragment(date: Date, callback: (String) -> Unit)
+    fun showToastMessage(message: String)
+    fun navigateToHistoryFragment()
 }

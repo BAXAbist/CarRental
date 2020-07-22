@@ -33,6 +33,9 @@
     <string name="total_cost">Общая стоимость: %1$d рублей</string>
     <string name="start_date">Дата проката: %1$s</string>
     <string name="end_date">Дата возврата: %1$s</string>
+    <string name="car">Автомобиль: %1$s</string>
+    <string name="cost">Стоимость: %1$d</string>
+    <string name="state">Статус: %1$s</string>
 
     <plurals name="passengers_plural">
         <item quantity="one">%1$d место</item>
@@ -41,9 +44,9 @@
     </plurals>
 
     <plurals name="bags_plural">
-        <item quantity="one"></item>
-        <item quantity="few"></item>
-        <item quantity="other"></item>
+        <item quantity="one">%1$d багажное место</item>
+        <item quantity="few">%1$d багажных места</item>
+        <item quantity="other">%1$d багажных мест</item>
     </plurals>
 
     <plurals name="doors_plural">

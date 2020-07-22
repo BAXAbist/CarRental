@@ -52,19 +52,13 @@ class CarsFragmentViewImpl : Fragment(), CarsFragmentView {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_cars, container, false)
-
-        Log.i("VIEW", "123123123123")
-
         progress = view.findViewById(R.id.car_list_progress)
         recyclerView = view.findViewById(R.id.car_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
-        Log.i("VIEW", "123123123123")
-
         presenter.onCreateView()
 
-        Log.i("VIEW", "123123123123")
         return view
     }
 

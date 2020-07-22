@@ -23,4 +23,31 @@ class CarItemFragmentRepositoryImpl(val apiService: RentNewCarApiService) : CarI
             }
         }
     }
+
+    override fun makeOrder(
+        clientId: Int,
+        carId: Int,
+        startDate: Long,
+        endDate: Long,
+        resultOk: () -> Unit,
+        resultError: (String) -> Unit
+    ) {
+        CoroutineScope(IO).launch {
+            val result = apiService.makeOrder(
+                clientId,
+                carId,
+                startDate,
+                endDate,
+                "active"
+            )
+
+            withContext(Main) {
+                if (result.isSuccessful) {
+                    resultOk.invoke()
+                } else {
+                    resultError.invoke(result.errorBody()!!.string())
+                }
+            }
+        }
+    }
 }

@@ -1,13 +1,13 @@
 package com.voak.android.rentnewcar.view
 
 import android.os.Bundle
+import android.text.format.DateFormat
+import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.voak.android.rentnewcar.MyApplication
 import com.voak.android.rentnewcar.R
@@ -16,11 +16,14 @@ import com.voak.android.rentnewcar.di.modules.CarItemFragmentModule
 import com.voak.android.rentnewcar.presenter.CarItemFragmentPresenter
 import com.voak.android.rentnewcar.utils.IMAGE_BASE_URL
 import com.voak.android.rentnewcar.utils.PicassoObj
+import java.util.*
 import javax.inject.Inject
 
 class CarItemFragmentViewImpl : Fragment(), CarItemFragmentView {
 
     companion object {
+        private const val REQUEST_DATE = 0
+        private const val DIALOG_DATE = "DialogDate"
         private const val ARG_CAR_ID = "carId"
 
         fun newInstance(carId: Int): CarItemFragmentViewImpl {
@@ -34,7 +37,6 @@ class CarItemFragmentViewImpl : Fragment(), CarItemFragmentView {
         }
     }
 
-//    private lateinit var carBrand: TextView
     private lateinit var carImage: ImageView
     private lateinit var carPrice: TextView
     private lateinit var passengers: TextView
@@ -66,7 +68,6 @@ class CarItemFragmentViewImpl : Fragment(), CarItemFragmentView {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_car_item, container, false)
 
-//        carBrand = view.findViewById(R.id.car_item_brand)
         carImage = view.findViewById(R.id.car_item_image)
         carPrice = view.findViewById(R.id.car_item_price)
         passengers = view.findViewById(R.id.passengers)
@@ -78,15 +79,50 @@ class CarItemFragmentViewImpl : Fragment(), CarItemFragmentView {
         makeOrderButton = view.findViewById(R.id.make_order_button)
         progress = view.findViewById(R.id.car_item_progress)
 
+        startDate.setOnClickListener {
+            presenter.onDateTextViewClicked(
+                startDate.text.split(": ")[1]) {
+                setStartDate(it)
+                presenter.onDateChanged(it, endDate.text.split(": ")[1])
+            }
+        }
+
+        endDate.setOnClickListener {
+            presenter.onDateTextViewClicked(
+                endDate.text.split(": ")[1]) {
+                setEndDate(it)
+                presenter.onDateChanged(startDate.text.split(": ")[1], it)
+            }
+        }
+
+        makeOrderButton.setOnClickListener {
+            presenter.onMakeOrderButtonClicked(
+                requireArguments().getInt(ARG_CAR_ID),
+                startDate.text.split(": ")[1],
+                endDate.text.split(": ")[1]
+            )
+        }
+
         presenter.onCreateView(requireArguments().getInt(ARG_CAR_ID))
-
-
 
         return view
     }
 
+    override fun showToastMessage(message: String) {
+        val toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.BOTTOM, 0, 20)
+        toast.show()
+    }
+
+    override fun openDatePickerFragment(date: Date, callback: (String) -> Unit) {
+        val dialog = DatePickerFragment.newInstance(date)
+        dialog.setCallback(callback)
+        dialog.setTargetFragment(this, REQUEST_DATE)
+        dialog.show(parentFragmentManager, DIALOG_DATE)
+    }
+
     override fun setCarBrand(brand: String) {
-//        carBrand.text = brand
+        requireActivity().title = brand
     }
 
     override fun setCarImage(imageUrl: String) {
@@ -132,7 +168,6 @@ class CarItemFragmentViewImpl : Fragment(), CarItemFragmentView {
     }
 
     override fun showAllViews() {
-//        carBrand.visibility = View.VISIBLE
         carImage.visibility = View.VISIBLE
         carPrice.visibility = View.VISIBLE
         passengers.visibility = View.VISIBLE
@@ -145,7 +180,6 @@ class CarItemFragmentViewImpl : Fragment(), CarItemFragmentView {
     }
 
     override fun hideAllViews() {
-//        carBrand.visibility = View.GONE
         carImage.visibility = View.GONE
         carPrice.visibility = View.GONE
         passengers.visibility = View.GONE
@@ -163,6 +197,10 @@ class CarItemFragmentViewImpl : Fragment(), CarItemFragmentView {
 
     override fun hideMakeOrderButton() {
         makeOrderButton.visibility = View.GONE
+    }
+
+    override fun navigateToHistoryFragment() {
+        navigationCallback.navigateToHistoryFragment()
     }
 
     fun setNavigationCallback(callback: NavigationCallback) {
