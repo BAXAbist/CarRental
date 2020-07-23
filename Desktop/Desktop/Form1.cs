@@ -47,14 +47,14 @@ namespace Desktop
         public void AddNewCar(string[] row, string imgpath)
         {
 
-            Bitmap i = new Bitmap(Image.FromFile(imgpath),200,100);
+            Bitmap i = new Bitmap(Image.FromFile(imgpath), 200, 100);
             if (dataGridView1.RowCount > 1)
-                id_car1 = Convert.ToInt32(dataGridView1[dataGridView1.ColumnCount - 1, dataGridView1.RowCount-2].Value);
+                id_car1 = Convert.ToInt32(dataGridView1[dataGridView1.ColumnCount - 1, dataGridView1.RowCount - 2].Value);
             else
                 id_car1 = 0;
             id_car1++;
-            dataGridView1.Rows.Add(i,row[0],row[2],row[1],"active", id_car1);
-            web.UploadFile("https://www.rentnewcar.ffox.site/api/GetAllCars.php", "VAZ.jpg");
+            dataGridView1.Rows.Add(i, row[0], row[2], row[1], "active", id_car1);
+            //web.UploadFile("https://www.rentnewcar.ffox.site/api/GetAllCars.php", "VAZ.jpg");
             //var imgconv = new ImageConverter();
             //var bite = (byte[])imgconv.ConvertTo(i, typeof(byte[]));
             //WebRequest request = (HttpWebRequest)WebRequest.Create("https://www.rentnewcar.ffox.site/api/GetAllCars.php");
@@ -62,7 +62,22 @@ namespace Desktop
             //string sName = "icon=";
             //byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(sName);
             //byteArray
-            //отправить запрос
+
+            
+            WebRequest request = (HttpWebRequest)WebRequest.Create("https://www.rentnewcar.ffox.site/api/AddCar.php");
+            request.Method = "POST";
+            string sName = "brand=" + row[0] + "&cost=" + row[1] + "&type=" + row[2] + "&icon=image/No_image.jpg" + "&status=active" + "&passengers=1" + "&bags=1" + "&doors=1";
+            byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(sName);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = byteArray.Length;
+            using (Stream dataStream = request.GetRequestStream())
+            {
+                dataStream.Write(byteArray, 0, byteArray.Length);
+            }
+
+            WebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader stream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+            string json = stream.ReadToEnd();
         }
 
         public async Task<HttpResponseMessage> UploadImage(string url, byte[] ImageData)

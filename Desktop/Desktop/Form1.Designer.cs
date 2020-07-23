@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Photo = new System.Windows.Forms.DataGridViewImageColumn();
+            this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_car = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Button_AddCar = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -47,7 +53,6 @@
             this.button_Cancel = new System.Windows.Forms.Button();
             this.button_Confirm = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.FirstName_Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SecondName_Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Phone_Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,12 +62,7 @@
             this.Date_return = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.state = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_history = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Photo = new System.Windows.Forms.DataGridViewImageColumn();
-            this.brand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_car = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -89,6 +89,43 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(729, 497);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // Photo
+            // 
+            this.Photo.HeaderText = "Фото";
+            this.Photo.Name = "Photo";
+            this.Photo.ReadOnly = true;
+            // 
+            // brand
+            // 
+            this.brand.HeaderText = "Марка";
+            this.brand.Name = "brand";
+            this.brand.ReadOnly = true;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Категория";
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            // 
+            // cost
+            // 
+            this.cost.HeaderText = "Стоим-ть";
+            this.cost.Name = "cost";
+            this.cost.ReadOnly = true;
+            // 
+            // status
+            // 
+            this.status.HeaderText = "Статус";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // id_car
+            // 
+            this.id_car.HeaderText = "ID";
+            this.id_car.Name = "id_car";
+            this.id_car.Visible = false;
             // 
             // Button_AddCar
             // 
@@ -276,10 +313,6 @@
             this.dataGridView3.Size = new System.Drawing.Size(729, 497);
             this.dataGridView3.TabIndex = 1;
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // FirstName_Order
             // 
             this.FirstName_Order.HeaderText = "Имя";
@@ -338,42 +371,9 @@
             this.id_history.ReadOnly = true;
             this.id_history.Visible = false;
             // 
-            // Photo
+            // openFileDialog1
             // 
-            this.Photo.HeaderText = "Фото";
-            this.Photo.Name = "Photo";
-            this.Photo.ReadOnly = true;
-            // 
-            // brand
-            // 
-            this.brand.HeaderText = "Марка";
-            this.brand.Name = "brand";
-            this.brand.ReadOnly = true;
-            // 
-            // type
-            // 
-            this.type.HeaderText = "Категория";
-            this.type.Name = "type";
-            this.type.ReadOnly = true;
-            // 
-            // cost
-            // 
-            this.cost.HeaderText = "Стоим-ть";
-            this.cost.Name = "cost";
-            this.cost.ReadOnly = true;
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Статус";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            this.status.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // id_car
-            // 
-            this.id_car.HeaderText = "ID";
-            this.id_car.Name = "id_car";
-            this.id_car.Visible = false;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
