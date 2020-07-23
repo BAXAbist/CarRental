@@ -9,7 +9,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
-   
+  
+    
+  
   
   
 </head>
@@ -58,7 +60,7 @@
         </div>
       </div>
       <div class="b_a_i">
-        <img src="image/11.jpg" >
+        <img src="image/11.jpg">
         <div class="main_text">Аренда люкс уровня</div>
         <div class = "box_m_2">
         <p class="m_2_text"> Наша компания предоставляет впечатляющий выбор роскошных автомобилей для первоклассных деловых и частных поездок на короткие расстояния.</p>
@@ -114,14 +116,14 @@
                     continue;
                 }
                 echo '<div class = "car_box">'; 
-                echo '<img src="', htmlspecialchars(urlencode($item['icon'])),'" style = "width:100%;max-width:400px;"/>';
+                echo '<img id = "'.$item['id_car'].'"src="', htmlspecialchars(urlencode($item['icon'])),'" style = "width:100%;max-width:400px;"/>';
                 echo "<div class = 'car_text'>"."<div class = 'car_brand'>".$item['brand']."</div>"."<div class = 'car_cost'>".$item['cost']." руб/день</div>"."</div>";
                 echo "</div>";
                 };
             
     ?> 
      </div>
-     <div class="but_div1"><button class="m_2_button1">Сделать заказ</button></div> 
+    
   </div>
   
   <div class = "main_5">
@@ -144,10 +146,71 @@
           <input type = "text" name = "login" placeholder = "login"><br>
           <input type = "text" name = "password" placeholder = "password"><br>
           <button id = 'but_auth'>Авторизация</button>
+          <button class = "button_reg js-button-campaign-reg">Регистрация</button>
           <div class = "close-popup js-close-campaign"></div>
       </form>
-      
   </div>
+  <div class = "overlay js-overlay-campaign-1">
+  <form  class="popup js-popup-campaign-1">
+      <p>
+          <p>Ваш логин:</p>
+          <input type = "text" name = "login" value = "<?php echo @$data['login']; ?>"></input>
+      </p>
+      <p>
+          <p>Ваш пароль:</p>
+          <input type = "password" name = "password"></input>
+      </p>
+      <p>
+          <p>Повторите пароль:</p>
+          <input type = "password" name = "password2"></input>
+      </p>
+      <p>
+          <p>Ваше имя:</p>
+          <input type = "text" name = "first_name" value = "<?php echo @$data['first_name']; ?>"></input>
+      </p>
+      <p>
+          <p>Ваша фамилия:</p>
+          <input type = "text" name = "second_name" value = "<?php echo @$data['second_name']; ?>"></input>
+      </p>
+      <p>
+          <p>Ваше отчество:</p>
+          <input type = "text" name = "middle_name" value = "<?php echo @$data['middle_name']; ?>"></input>
+      </p>
+      <p>
+          <p>Ваш адрес:</p>
+          <input type = "text" name = "address" value = "<?php echo @$data['address']; ?>"></input>
+      </p>
+      <p>
+          <p>Ваш номер телефона:</p>
+          <input type = "text" name = "phone" value = "<?php echo @$data['phone']; ?>"></input>
+      </p>
+      <p>
+          <button type = 'submit' name = 'do_signup' id ='but_reg'>Регистрация</button>
+      </p>
+      <div class = "close-popup js-close-campaign-1"></div>
+  </form>
+  </div>
+  <?php
+    session_start();
+    
+    if($_SESSION['logo']=='yes'){
+    
+    ?>      
+    <script type="text/javascript">
+        
+        var element = document.getElementById('about');
+        var find_element = element.querySelectorAll('a');
+        find_element[3].remove();
+        var newElement = document.createElement("a");
+        var newElement1 = document.createElement("a");
+        newElement.href = 'home_page.php';
+        newElement.innerHTML = '<img src="image/avatar.jpg" alt="" class="image">';
+        newElement1.innerHTML = 'Выйти'
+        newElement1.classList.add("leaver"); 
+        element.append(newElement);
+        element.append(newElement1);
+    </script> 
+    <?};?>
   <script src="js/script.js"></script>     
   <!--slow scroll-->
   
